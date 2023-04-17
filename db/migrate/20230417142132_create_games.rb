@@ -17,7 +17,7 @@ end
 #a game belongs to a court therefore court_id is here
 #join or through table
 
-#contact_info might need to be a string or an integer
+#contact_info might need to be a string or an integer (?)
 #use <tel> input in form and see what happens 
 #see W3 docs tab u have open re: tel and (or an email?)
 #if so, should these be separate fields?
