@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     def create
     end
 
+#GET /me 
+    def show
+        binding.pry
+        #get current user, render it in json
+    end
 
     
 end
