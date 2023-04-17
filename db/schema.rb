@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2023_04_17_142850) do
     t.string "time"
     t.boolean "bring_ball"
     t.integer "user_id"
+    t.integer "court_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.string :time
       t.boolean :bring_ball
       t.integer :user_id
+      t.integer :court_id
 
       t.timestamps
     end
@@ -11,3 +12,5 @@ class CreateGames < ActiveRecord::Migration[6.1]
 end
 
 #a game belongs to a user therefore user_id is here
+#a game belongs to a court therefore court_id is here
+#join or through table
