@@ -1,21 +1,26 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Navigation from './Navigation'
 import Home from './Home'
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 import { UserProvider } from './context/user'
 import './App.css';
 
 
 function App() {
   return (
-    <div className="App">
-      <UserProvider>
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-        </Routes>
-      </UserProvider>
-    </div>
+    <Router>
+      <Navigation />
+        <div className="App">
+          <UserProvider>
+            {/* <NavBar /> */}
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+              </Routes>
+          </UserProvider>
+        </div>
+    </Router>
+
   );
 }
 
