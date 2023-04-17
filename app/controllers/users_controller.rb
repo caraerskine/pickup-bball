@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
 #GET /me 
     def show
-        binding.pry
         #get current user, render it in json
     end
 
