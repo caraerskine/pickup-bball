@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2023_04_17_142850) do
   create_table "games", force: :cascade do |t|
     t.string "time"
     t.boolean "bring_ball"
+    t.string "skill_level"
+    t.string "contact_info"
     t.integer "user_id"
     t.integer "court_id"
     t.datetime "created_at", precision: 6, null: false
