@@ -6,7 +6,7 @@ const UserContext = React.createContext();
 
 //create a provider component
 function UserProvider({ children } ) {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
     //set useState to an empty object u r going to 'get'
     //user IS an object
 
@@ -21,11 +21,26 @@ function UserProvider({ children } ) {
 //run this set the user in here
 //fetch the games for that user too (later on)
 //hit /me get the user
-//in the value returnt he user
+//in the value return the user
+//the user is held in state, if the user changes we know about it
+
+
+const login = () => {
+    setUser(user)
+} 
+
+const logout = () => {
+    setUser(null)
+}
+
+const signup = (user) => {
+    setUser(user)
+}
+//setUser in state ^
 
 
     return (
-        <UserContext.Provider value={{}}>
+        <UserContext.Provider value={{user, login, logout, signup}}>
             {children}
         </UserContext.Provider>
 

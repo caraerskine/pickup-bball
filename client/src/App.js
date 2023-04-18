@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navigation from './Navigation'
+import SignUp from './SignUp'
+import Login from './Login'
 import Home from './Home'
 // import NavBar from './NavBar'
 import { UserProvider } from './context/user'
@@ -13,9 +15,11 @@ function App() {
       <Navigation />
         <div className="App">
           <UserProvider>
-            {/* <NavBar /> */}
+          {/* <NavBar /> */}
               <Routes>
                 <Route exact path="/" element={<Home />} />
+                <Route exact path="/signup" element={<SignUp />} />
+                <Route exact path="/login" element={<Login />} />
               </Routes>
           </UserProvider>
         </div>
