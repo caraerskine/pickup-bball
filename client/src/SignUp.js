@@ -20,11 +20,14 @@ function SignUp() {
                     password: password,
                     password_confirmation: passwordConfirmation
                 })
+                //informs back end of new user
         })
         .then(response => response.json())
         .then(user => {
             if (!user.errors) {
+                //check for errors, if none, calls signup user which is a function in user.js (context)
                 signup(user)
+                navigate('/')
             } else {
                 setUsername("")
                 setPassword("")
@@ -32,7 +35,7 @@ function SignUp() {
                 const errorLis = user.errors.map(e => <li>{e}</li>)
                 setErrorsList(errorLis)
             }
-        })
+        }) //clears page and shows the fields for login
     }
 
 //config object in the {} 
@@ -54,7 +57,7 @@ function SignUp() {
             <label>Username:</label>
             <input 
                 type="text" 
-                id="name"
+                id="username"
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)}
         />
