@@ -26,6 +26,12 @@ function UserProvider({ children } ) {
 //in the value return the user
 //the user is held in state, if the user changes we know about it
 
+//useEffect - when i refresh the page
+//hit the me route, checks user show to see if there is a user n the session hash
+//returns a user or an error
+//set the user in state 
+//setLogged in becomes true or false depending on the obejct you get back
+
 
 const login = (user) => {
     setUser(user)

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user';
-import { useHistory } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
 function SignUp() {
     const [username, setUsername] = useState("")
@@ -8,7 +8,7 @@ function SignUp() {
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
     const {signup} = useContext(UserContext);
-    //const history = useHistory()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -49,7 +49,7 @@ function SignUp() {
 
     return (
     <div className="signup-form">
-        <h2>testing</h2>
+        <h2></h2>
         <form onSubmit={handleSubmit}>
             <label>Username:</label>
             <input 
