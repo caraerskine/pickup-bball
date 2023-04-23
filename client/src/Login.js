@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import { useNavigate } from 'react-router-dom'
 
+//important
+//check routing on Login and where it navigates to line 27
+
 function Login(){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -22,8 +25,9 @@ function Login(){
         .then(response => response.json())
         .then(user => {
             login(user)
-            navigate('/me')
+            navigate('/games')
             //is this right? should it be directed to this route?
+            //when "user" logs in, should it go to /games
         })
         }
 

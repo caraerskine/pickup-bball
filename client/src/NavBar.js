@@ -25,6 +25,9 @@ function NavBar() {
                 <h1>Hello {user.username}</h1>
                 <br/>
                 <button onClick={logoutUser}>Logout</button>
+                <NavLink to='/games'>
+                    <button>Games</button>
+                </NavLink>
             </div>
         )          
     } else {
