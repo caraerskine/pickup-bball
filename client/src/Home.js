@@ -7,7 +7,7 @@ function Home() {
     if (loggedIn) {
         return(
             <div>
-                (<h3>{user.username}'s Home Page</h3>)
+                <h3>{user.username}'s Home Page</h3>
             </div>
         )
     } else {
@@ -17,8 +17,3 @@ function Home() {
 
 export default Home
 
-//useContext
-
-//UserContext
-
-//look these up

@@ -6,5 +6,3 @@ class User < ApplicationRecord
     has_many :courts, through: :games
 end
 
-#a user has_many games 
-#(THROUGH courts)
