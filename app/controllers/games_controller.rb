@@ -15,6 +15,7 @@ class GamesController < ApplicationController
             render json: game
         else
             render json: { errors: game.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def show
@@ -22,8 +23,10 @@ class GamesController < ApplicationController
         if game 
             render json: game 
         else
-            render json: { error: "Not Found"}, status: :unauthorized
+            render json: { error: "Not Found" }, status: :unauthorized
+        end
     end
+
     #find by returns null if it cant find one
     #if you did Game.find_by we would violate it
 
@@ -55,7 +58,6 @@ class GamesController < ApplicationController
     #if the sessions DOES not inlude user_id please do this
     #if not do nothing
     #if logged in they are authorized
-
 end
 
 #full crud in here

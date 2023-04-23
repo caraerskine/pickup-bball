@@ -26,6 +26,9 @@ function UserProvider({ children } ) {
         })
     }, [])
 
+    //send nested json, get the user and their games
+    //then you'd delete the fetchGames from Login and Signup
+
     const fetchGames = () => {
         fetch('/games')
         .then(response => response.json())
@@ -70,16 +73,19 @@ const addGame = (game) => {
 
 const login = (user) => {
     setUser(user)
+    fetchGames()
     setLoggedIn(true)
 } 
 
 const logout = () => {
     setUser({})
+    setGames([])
     setLoggedIn(false) //loggedIn now becomes false
 }
 
 const signup = (user) => {
     setUser(user)
+    fetchGames()
     setLoggedIn(true) //becomes true as they signed up
 }
 //setUser in state ^

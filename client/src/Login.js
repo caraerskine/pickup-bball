@@ -24,10 +24,16 @@ function Login(){
         })
         .then(response => response.json())
         .then(user => {
+          if (!user.errors) {
             login(user)
-            navigate('/games')
+            navigate('/')
             //is this right? should it be directed to this route?
             //when "user" logs in, should it go to /games
+          } else {
+            setUsername("")
+            setPassword("")
+            setError(error)
+          }
         })
         }
 

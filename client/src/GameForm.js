@@ -9,7 +9,7 @@ function GameForm(){
     // const [ball, setBall] = useState("")
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
-    const {addGame} = useContext(UserContext)
+    const { addGame } = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
