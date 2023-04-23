@@ -9,12 +9,14 @@ function UserProvider({ children } ) {
     const [user, setUser] = useState(null)
     //set useState to an empty object u r going to 'get'
     //user IS an object
+    const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
 
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
         .then(data => {
             setUser(data)
+            data.error ? setLoggedIn(false) : setLoggedIn(true) //set LoggedIn
         })
     }, [])
 //empty dependency array to get user on mount and establish who user is
@@ -25,22 +27,27 @@ function UserProvider({ children } ) {
 //the user is held in state, if the user changes we know about it
 
 
-const login = () => {
+const login = (user) => {
     setUser(user)
+    setLoggedIn(true)
 } 
 
 const logout = () => {
-    setUser(null)
+    setUser({})
+    setLoggedIn(false) //loggedIn now becomes false
 }
 
 const signup = (user) => {
     setUser(user)
+    setLoggedIn(true) //becomes true as they signed up
 }
 //setUser in state ^
 
 
     return (
-        <UserContext.Provider value={{user, login, logout, signup}}>
+        //loggedIn is now part of global state
+        //compoenent just needs to check logged in, t or f
+        <UserContext.Provider value={{user, login, logout, signup, loggedIn}}>
             {children}
         </UserContext.Provider>
 
