@@ -1,5 +1,10 @@
 class Game < ApplicationRecord
+    validates :time, :bring_ball, :skill_level, :contact_info, presence: true
+
     belongs_to :user
     belongs_to :court
 end
 
+#validations are run when anything is saved
+#with create, save and update all hit model and hit the validations
+#because ut is trying to get saved to the database

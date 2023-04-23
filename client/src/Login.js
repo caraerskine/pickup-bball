@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login(){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-    //const history = useHistory()
+    const navigate = useNavigate()
     const {login} = useContext(UserContext);
 
     const handleSubmit = (e) => {
@@ -22,6 +22,8 @@ function Login(){
         .then(response => response.json())
         .then(user => {
             login(user)
+            navigate('/me')
+            //is this right? should it be directed to this route?
         })
         }
 

@@ -10,15 +10,33 @@ function UserProvider({ children } ) {
     //set useState to an empty object u r going to 'get'
     //user IS an object
     const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
+    const [games, setGames] = useState([])
 
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
         .then(data => {
             setUser(data)
-            data.error ? setLoggedIn(false) : setLoggedIn(true) //set LoggedIn
+            if (data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+                fetchGames()
+            } 
         })
     }, [])
+
+    const fetchGames = () => {
+        fetch('/games')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setGames(data)
+        })
+    }
+
+   
+ //useEffect   
 //empty dependency array to get user on mount and establish who user is
 //run this set the user in here
 //fetch the games for that user too (later on)
@@ -31,6 +49,22 @@ function UserProvider({ children } ) {
 //returns a user or an error
 //set the user in state 
 //setLogged in becomes true or false depending on the obejct you get back
+
+const addGame = (game) => {
+ fetch('/games', {
+    method: 'POST',
+    headers: { 'Content-Type' : 'application/json'},
+    body: JSON.stringify(game)
+ })       
+    .then(response => response.json())
+    .then(data => {
+        setGames([...games, data])
+    }) 
+
+}
+//all games and the new one aka data w/spread operator
+
+//coming from Game form
 
 
 const login = (user) => {
@@ -48,12 +82,13 @@ const signup = (user) => {
     setLoggedIn(true) //becomes true as they signed up
 }
 //setUser in state ^
+//who needs acess to global state
 
 
     return (
         //loggedIn is now part of global state
         //compoenent just needs to check logged in, t or f
-        <UserContext.Provider value={{user, login, logout, signup, loggedIn}}>
+        <UserContext.Provider value={{user, login, logout, signup, loggedIn, games, addGame}}>
             {children}
         </UserContext.Provider>
 
