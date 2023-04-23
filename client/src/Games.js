@@ -7,9 +7,16 @@ function Games() {
     const { games, loggedIn } = useContext(UserContext);
     const [formFlag, setFormFlag] = useState(false)
     const params = useParams();
+
+    const addGameFlag = () => {
+        setFormFlag(false)
+    }
+
     if (loggedIn) {
-        const gamesList = games.map(g => <li>{g.time}</li>)
+        const gamesList = games.map((g) => {g.time})
         //throwing error on this map hmmmm
+        //am i mapping over something that is not an array?
+        //no because console.log is showing it is an empty array
         console.log(games)
         return (
             <div>
@@ -17,8 +24,8 @@ function Games() {
                 <br/>
                 {gamesList}
                 <br/>
-                {formFlag? 
-                    <GameForm />
+                {formFlag ? 
+                    <GameForm addGameFlag={addGameFlag}/>
                     :
                     <button onClick={() => setFormFlag(true)}>Add Game</button>
                 }

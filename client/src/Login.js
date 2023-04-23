@@ -26,7 +26,7 @@ function Login(){
         .then(user => {
           if (!user.errors) {
             login(user)
-            navigate('/')
+            navigate('/games')
             //is this right? should it be directed to this route?
             //when "user" logs in, should it go to /games
           } else {
