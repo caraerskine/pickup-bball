@@ -63,6 +63,7 @@ const addGame = (game) => {
 
 }
 //all games and the new one aka data w/spread operator
+//post it after I stringify it and then add it to the existing games
 
 //coming from Game form
 
