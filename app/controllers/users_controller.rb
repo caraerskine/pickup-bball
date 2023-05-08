@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 end
 
 #user_params strong params 
+#do i need :name on line 33 (?) i dont but 
 
 #which line of code is the line of code that logs the user in?
 #where their ID gets added to the session which is line 7 here BOOM
