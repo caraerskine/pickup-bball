@@ -1,7 +1,22 @@
 class GamesController < ApplicationController
     before_action :authorize
     before_action :authorize_user, except: [:index, :create]
-    
+   
+    #old
+    # def create
+    #     game = current_user.games.create(game_params)
+    #     if game.valid? 
+    #         render json: game
+    #     else
+    #         render json: { errors: game.errors.full_messages }, status: :unprocessable_entity
+    #     end
+    # end
+
+    #new
+    def create
+        game = Game.create!(game_params)
+   
+   
     def index
         games = current_user.games
         render json: games
@@ -10,14 +25,7 @@ class GamesController < ApplicationController
     #work off the current_user, not the model
     #AR assoc. gives us security, it only gives "me" "mygames"
 
-    def create
-        game = current_user.games.create(game_params)
-        if game.valid? 
-            render json: game
-        else
-            render json: { errors: game.errors.full_messages }, status: :unprocessable_entity
-        end
-    end
+   
 
     def show
         game = current_user.games.find_by(id: params[:id])
@@ -31,16 +39,19 @@ class GamesController < ApplicationController
     #find by returns null if it cant find one
     #if you did Game.find_by we would violate it
 
+    def update
+        game = Game.find(params[:id])
+        game.update!(game_params)
+        render json: game
+    end
+    #update the user's game
+
     def destroy
         game = Game.find(params[:id])
         game.destroy
         head :no_content
     end
     #delete the user's game
-
-    def update
-    end
-    #update the user's game
 
     private
 
