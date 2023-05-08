@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
     before_action :authorize
+    before_action :authorize_user, except: [:index, :create]
     
     def index
         games = current_user.games
@@ -31,12 +32,15 @@ class GamesController < ApplicationController
     #if you did Game.find_by we would violate it
 
     def destroy
+        game = Game.find(params[:id])
+        game.destroy
+        head :no_content
     end
-    #delete their game
+    #delete the user's game
 
     def update
     end
-    #update their game
+    #update the user's game
 
     private
 
