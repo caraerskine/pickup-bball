@@ -1,4 +1,5 @@
 import React from 'react'
+import { UserContext } from './context/user'
 
 const Courts = () => {
   return (
@@ -7,3 +8,6 @@ const Courts = () => {
 }
 
 export default Courts
+
+//what is on Courts?
+//

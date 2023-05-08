@@ -26,7 +26,7 @@ function UserProvider({ children } ) {
         })
     }, [])
 
-    //send nested json, get the user and their games
+    //send nested json, get the user and their games instead
     //then you'd delete the fetchGames from Login and Signup
 
     const fetchGames = () => {

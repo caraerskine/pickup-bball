@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 #users ctrllr
  post "/signup", to: "users#create" 
  get "/me", to: "users#show"
+ 
 
 resources :games 
 resources :courts

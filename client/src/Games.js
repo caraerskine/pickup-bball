@@ -13,10 +13,7 @@ function Games() {
     }
 
     if (loggedIn) {
-        const gamesList = games.map((g) => {g.time})
-        //throwing error on this map hmmmm
-        //am i mapping over something that is not an array?
-        //no because console.log is showing it is an empty array
+        const gamesList = games.map((g) => g.time)
         console.log(games)
         return (
             <div>
