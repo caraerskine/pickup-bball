@@ -4,17 +4,13 @@ class SessionsController < ApplicationController
    #create a session when you login
    #destroy a session when you logout
 
-   ###FIX
-   ###FIX
-  # IMPORTANT sesh_params and private is messed up fix
-
     #login  
     def create
-        user = User.find_by(sesh_params)
-        byebug
-        if user&.authenticate(sesh_params)
+        user = User.find_by(username: params[:username])
+        # byebug
+        if user&.authenticate(params[:password]) #if user and user.authenticate
             session[:user_id] = user.id
-            render json: user 
+            render json: user, status: :created
         else
             render json: {error: "Invalid username or password"}, status: :unauthorized
         end
@@ -22,21 +18,14 @@ class SessionsController < ApplicationController
 
     #logout
     def destroy
-        session.clear
+        session.destroy
+        head :no_content
     end
-
-    private
-
-    def sesh_params
-        params.permit(:username, :password)
-    end
-
-
 end
 
 #allows us to show that a user is logged in
 #IMPORTANT
-#make strong params later w private
+#make strong params later w private?? idk
 #brcrypt and AR gives us .authenticate
 
 #same as if saying user && user.authenticate
