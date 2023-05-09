@@ -45,20 +45,20 @@ class GamesController < ApplicationController
   
 
     def update
-        game = current_user.find(params[:id])
+        game = Game.find(params[:id])
         game.update!(game_params)
         render json: game
     end
     #update the user's game
-    #i am going to try current_user instead of Game 
+    #i am going to try current_user instead of Game ok nvrmnd
 
     def destroy
-        game = current_user.find(params[:id])
+        game = Game.find(params[:id])
         game.destroy
         head :no_content
     end
     #delete the user's game
-    # i am going to try current_user instead of Game
+    # i am going to try current_user instead of Game ok nvrmnd
 
     private
 
