@@ -6,6 +6,7 @@ import Login from './Login'
 import Home from './Home'
 import NavBar from './NavBar'
 import Games from './Games'
+import Courts from './Courts'
 import { UserProvider } from './context/user'
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
                 <Route exact path="/signup" element={<SignUp />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/games" element={<Games />} />
+                <Route exact path="/courts" element={<Courts />} />
               </Routes>
           </UserProvider>
         </div>

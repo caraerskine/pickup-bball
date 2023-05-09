@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
 
-//fix "bring_ball" dropdown like the spelling bee dropdown
-//make sure "id" is good in each input
 
-function GameForm( ){
+function GameForm( {form} ){
     const [time, setTime] = useState("")
     const [ball, setBall] = useState("")
     const [skill, setSkill] = useState("")
