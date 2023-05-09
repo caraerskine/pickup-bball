@@ -4,10 +4,11 @@ class GamesController < ApplicationController
    
     #old style
     def create
-        game = current_user.games.create!(game_params)
+        game = Game.games.create!(game_params)
         render json: game, status: :created
     end
 
+     # went off model of Game instead of current_user IDFK
     #new thought but maybe not cuz it is going off model
     # def create
     #     game = Game.create!(game_params)
@@ -17,7 +18,7 @@ class GamesController < ApplicationController
 
     #old nancy style
     def index
-        games = current_user.games
+        games = Game.games
         render json: games
     end
     #current user object, current user's games
@@ -31,7 +32,7 @@ class GamesController < ApplicationController
 
 
     def show
-        game = current_user.games.find_by(id: params[:id])
+        game = Game.find_by(id: params[:id])
         render json: game 
     end
       #find by returns null if it cant find one
@@ -69,10 +70,12 @@ class GamesController < ApplicationController
 #returns current user object 
 
     def game_params
-        params.permit(:time, :bring_ball, :skill_level, :contact_info, :user_id)
+        params.permit(:time, :bring_ball, :skill_level, :contact_info, :user_id, :court_id)
     end
 
     def authorize
+        user_id = session[:user_id]
+        game = Game.find(params[:id])
         return render json: {error: "You are not authorized to edit this game"}, status: :unauthorized unless session.include? :user_id   
     end
 
