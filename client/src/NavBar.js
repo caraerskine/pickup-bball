@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { UserContext } from './context/user';
 import { NavLink, useNavigate } from 'react-router-dom'
 
-//hello "user" is not showing up it just says hello  line 27
 
 function NavBar() {
     const {user, logout, loggedIn} = useContext(UserContext)

@@ -3,13 +3,16 @@ import {Route, useParams} from 'react-router-dom'
 import { UserContext } from './context/user'
 import GameForm from './GameForm'
 
+
+//formFlag, addFormFlag has been changed to form, setForm
+
 function Games() {
     const { games, loggedIn } = useContext(UserContext);
-    const [formFlag, setFormFlag] = useState(false)
+    const [form, setForm] = useState(false)
     const params = useParams();
 
-    const addGameFlag = () => {
-        setFormFlag(false)
+    const addGame = () => {
+        setForm(false)
     }
 
     if (loggedIn) {
@@ -21,10 +24,10 @@ function Games() {
                 <br/>
                 {gamesList}
                 <br/>
-                {formFlag ? 
-                    <GameForm addGameFlag={addGameFlag}/>
+                {setForm ? 
+                    <GameForm form={form}/>
                     :
-                    <button onClick={() => setFormFlag(true)}>Add Game</button>
+                    <button onClick={() => addGame(true)}>Add Game</button>
                 }
 
             </div>

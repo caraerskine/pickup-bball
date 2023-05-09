@@ -4,7 +4,7 @@ import { UserContext } from './context/user'
 //fix "bring_ball" dropdown like the spelling bee dropdown
 //make sure "id" is good in each input
 
-function GameForm( { addGameFlag }){
+function GameForm( ){
     const [time, setTime] = useState("")
     const [ball, setBall] = useState("")
     const [skill, setSkill] = useState("")
@@ -19,7 +19,7 @@ function GameForm( { addGameFlag }){
             skill_level: skill,
             contact_info: contact
         })
-        addGameFlag()
+        addGame()
     }
     //addGame tells global state there is a new command in the back end and put it in global state
 
