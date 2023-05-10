@@ -1,10 +1,9 @@
 import React, {useState, useContext} from 'react'
-import {Route, useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { UserContext } from './context/user'
+// import { Link } from 'react-router-dom' 
 import GameForm from './GameForm'
 
-
-//formFlag, addFormFlag has been changed to form, setForm
 
 function Games() {
     const { games, loggedIn } = useContext(UserContext);
@@ -17,7 +16,7 @@ function Games() {
 
     if (loggedIn) {
         const gamesList = games.map((g) => g.time)
-        //not a function
+        //not a function???
         // console.log(games)
         return (
             <div>

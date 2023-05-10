@@ -94,7 +94,7 @@ const signup = (user) => {
 
     return (
         //loggedIn is now part of global state
-        //compoenent just needs to check logged in, t or f
+        //component just needs to check logged in, t or f
         <UserContext.Provider value={{user, login, logout, signup, loggedIn, games, addGame}}>
             {children}
         </UserContext.Provider>

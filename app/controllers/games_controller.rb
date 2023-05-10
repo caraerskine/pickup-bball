@@ -4,7 +4,7 @@ class GamesController < ApplicationController
    
     #old style
     def create
-        game = Game.games.create!(game_params)
+        game = current_user.games.create(game_params)
         render json: game, status: :created
     end
 
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
     #old nancy style
     def index
-        games = Game.games
+        games = current_user.games
         render json: games
     end
     #current user object, current user's games
@@ -32,7 +32,7 @@ class GamesController < ApplicationController
 
 
     def show
-        game = Game.find_by(id: params[:id])
+        game = current_user.games.find_by(id: params[:id])
         render json: game 
     end
       #find by returns null if it cant find one

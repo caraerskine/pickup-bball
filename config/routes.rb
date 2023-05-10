@@ -22,3 +22,5 @@ end
 #show #me
  #whoami shows who is logged in and who the user is aka show route not seen by user
  #it is for react so it knows who the user is and the users show page
+
+ #where would /games be?
