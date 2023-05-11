@@ -14,14 +14,19 @@ function Court(){
                 <h2>{court.park}</h2>
                 <h2>{court.neighborhood}</h2>
                 <h2>{court.street}</h2>
-                <h3>{court.notes}</h3>
+                <p>{court.notes}</p>
+                <Link to={`/courts/${court.id}/newgame`}>
+                    Add a Game 
+                </Link>
+                <br/>
+                <Link to={`/courts/${court.id}/edit`}>
+                    Edit {court.park}
+                </Link>
             </div>
          ))}   
-            <div>Court</div>
         </>
   )
 }
 
-//add Links later on ??
 
 export default Court
