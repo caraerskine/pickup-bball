@@ -22,21 +22,27 @@ function Login(){
                 password: password
             })
         })
-        .then(response => response.json())
-        .then(user => {
-          if (!user.errors) {
-            login(user)
-            navigate('/games')
+        .then(response => {
+          if (response.ok){
+            response.json().then(user => {
+              login(user)
+              navigate('/games')
+            })
+          } else {
+            response.json().then(error => {
+              console.log(error.error, "potato")
+              setUsername("")
+              setPassword("")
+              setError(error.error)
+            })
+          }
             //is this right? should it be directed to this route?
             //when "user" logs in, should it go to /games
-          } else {
-            setUsername("")
-            setPassword("")
-            setError(error)
-          }
+        //   } else {
+        //   }
+        // })
         })
-        }
-
+      }
 
     return (
     <div className="login-form">

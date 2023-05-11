@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     #login  
     def create
         user = User.find_by(username: params[:username])
-        # byebug
         if user&.authenticate(params[:password]) #if user and user.authenticate
+            # byebug
             session[:user_id] = user.id
             render json: user, status: :created
         else

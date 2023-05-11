@@ -17,7 +17,8 @@ function Games() {
     if (loggedIn) {
         const gamesList = games.map((g) => g.time)
         //not a function???
-        // console.log(games)
+        console.log(games)
+        console.log(gamesList, "number 23")
         return (
             <div>
                 <h3>Games:</h3>

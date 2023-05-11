@@ -30,7 +30,6 @@ class GamesController < ApplicationController
     #     render json: Game.all
     # end
 
-
     def show
         game = current_user.games.find_by(id: params[:id])
         render json: game 

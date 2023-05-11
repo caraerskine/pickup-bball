@@ -12,16 +12,21 @@ function UserProvider({ children } ) {
     const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
     const [games, setGames] = useState([])
 
+console.log(games, "bball")
+
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
         .then(data => {
-            setUser(data)
+            console.log(data, "carrot")
             if (data.error) {
                 setLoggedIn(false)
             } else {
+                console.log(data)
+                setUser(data)
                 setLoggedIn(true)
                 fetchGames()
+                setGames(data.games)
             } 
         })
     }, [])
@@ -31,10 +36,20 @@ function UserProvider({ children } ) {
 
     const fetchGames = () => {
         fetch('/games')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setGames(data)
+        .then(response => {
+            if (response.ok){
+                response.json().then(data => {
+                    console.log(data, "new data")
+                    setGames(data)
+            })            
+        } else {
+            response.json().then(error => {
+                console.log(error, "new error")
+            })
+        }
+        // .then(data => {
+        //     console.log("game data", data)
+        //     setGames(data)
         })
     }
 
