@@ -11,6 +11,7 @@ function UserProvider({ children } ) {
     //user IS an object
     const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
     const [games, setGames] = useState([])
+    // const [isLoaded, setIsLoaded] = useState(false)
 
 console.log(games, "bball")
 
@@ -18,18 +19,25 @@ console.log(games, "bball")
         fetch('/me')
         .then(response => response.json())
         .then(data => {
-            console.log(data, "carrot")
+            // console.log(data, "carrot")
             if (data.error) {
                 setLoggedIn(false)
             } else {
                 console.log(data)
                 setUser(data)
                 setLoggedIn(true)
-                fetchGames()
                 setGames(data.games)
+                // setIsLoaded(true)
+                fetchGames()
             } 
         })
     }, [])
+
+    // if (!isLoaded){
+    //     return(
+    //         <p>Loading...</p>
+    //     )
+    // }
 
     //send nested json, get the user and their games instead
     //then you'd delete the fetchGames from Login and Signup

@@ -1,12 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { useContext } from 'react'
-import { UserContext } from './context/user'
+import { CourtsContext } from './context/courts'
 
-const Court = () => {
+function Court(){
  
-    const { courts } = useContext(UserContext)
- 
+    const { courts } = useContext(CourtsContext)
  
     return (
         <>

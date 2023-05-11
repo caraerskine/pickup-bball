@@ -8,6 +8,7 @@ import NavBar from './NavBar'
 import Games from './Games'
 import Courts from './Courts'
 import { UserProvider } from './context/user'
+import { CourtsProvider } from './context/courts'
 import './App.css';
 
 
@@ -17,6 +18,7 @@ function App() {
       <Navigation />
         <div className="App">
           <UserProvider>
+           <CourtsProvider>
           <NavBar />
               <Routes>
                 <Route exact path="/" element={<Home />} />
@@ -25,6 +27,7 @@ function App() {
                 <Route exact path="/games" element={<Games />} />
                 <Route exact path="/courts" element={<Courts />} />
               </Routes>
+            </CourtsProvider>
           </UserProvider>
         </div>
     </Router>

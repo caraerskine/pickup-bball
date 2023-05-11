@@ -18,7 +18,7 @@ function GameForm(){
             contact_info: contact
         })
         addGame()
-        console.log(addGame, "what is happening")
+        console.log(addGame, "addGame error")
     }
     //addGame tells global state there is a new command in the back end and put it in global state
 
@@ -31,7 +31,7 @@ function GameForm(){
             value={time}
             onChange={(e) => setTime(e.target.value)}
         /> <br/>
-        <label>Bring Ball? </label>
+        <label>Bring a Ball? </label>
         <select
             id="bring_ball"
             value={ball}

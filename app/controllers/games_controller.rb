@@ -21,7 +21,9 @@ class GamesController < ApplicationController
         game = current_user.games
         render json: game
     end
-    #I HAD THIS AS GAMES PLURAL WAS THAT THE PROBLEM
+    #*****
+    #I HAD THIS AS GAMES PLURAL WAS THAT THE PROBLEM IDK
+    #*****
     #current user object, current user's games
     #work off the current_user, not the model
     #AR assoc. gives us security, it only gives "me" "mygames"

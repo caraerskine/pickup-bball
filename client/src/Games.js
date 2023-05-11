@@ -16,7 +16,8 @@ function Games() {
 
     if (loggedIn) {
         const gamesList = games.map((g) => g.time)
-        console.log(gamesList, "number 23")
+        console.log(gamesList, "gamesList error")
+        
         return (
             <div>
                 <h3>Games:</h3>
@@ -28,6 +29,7 @@ function Games() {
                     :
                     <button onClick={() => addGame(true)}>Add Game</button>
                 }
+                  
             </div>
         )
     } else {
