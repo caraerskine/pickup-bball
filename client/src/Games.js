@@ -16,8 +16,6 @@ function Games() {
 
     if (loggedIn) {
         const gamesList = games.map((g) => g.time)
-        //not a function???
-        console.log(games)
         console.log(gamesList, "number 23")
         return (
             <div>
@@ -30,7 +28,6 @@ function Games() {
                     :
                     <button onClick={() => addGame(true)}>Add Game</button>
                 }
-
             </div>
         )
     } else {

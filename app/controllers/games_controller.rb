@@ -18,9 +18,10 @@ class GamesController < ApplicationController
 
     #old nancy style
     def index
-        games = current_user.games
-        render json: games
+        game = current_user.games
+        render json: game
     end
+    #I HAD THIS AS GAMES PLURAL WAS THAT THE PROBLEM
     #current user object, current user's games
     #work off the current_user, not the model
     #AR assoc. gives us security, it only gives "me" "mygames"

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
 
 
-function GameForm( {form} ){
+function GameForm(){
     const [time, setTime] = useState("")
     const [ball, setBall] = useState("")
     const [skill, setSkill] = useState("")
@@ -18,6 +18,7 @@ function GameForm( {form} ){
             contact_info: contact
         })
         addGame()
+        console.log(addGame, "what is happening")
     }
     //addGame tells global state there is a new command in the back end and put it in global state
 
