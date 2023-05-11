@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 import { useContext } from 'react'
 import { CourtsContext } from './context/courts'
 
+//birds is courts
+//courts is birds
+
 function Court(){
  
     const { courts } = useContext(CourtsContext)

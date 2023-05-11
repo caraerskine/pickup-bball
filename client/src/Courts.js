@@ -4,6 +4,9 @@ import { useContext } from 'react'
 import { UserContext } from './context/user'
 import Court from './Court'
 
+//birds is courts
+//courts is birds
+
 function Courts() {
 
   const { user } = useContext(UserContext)
