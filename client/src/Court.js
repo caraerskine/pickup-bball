@@ -6,6 +6,8 @@ import { CourtsContext } from './context/courts'
 //birds is courts
 //courts is birds
 
+//do key prop thing check old project
+
 function Court(){
  
     const { courts } = useContext(CourtsContext)
