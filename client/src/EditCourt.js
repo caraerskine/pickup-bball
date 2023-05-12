@@ -8,7 +8,7 @@ function EditCourt(){
     const [errorsList, setErrorsList] = useState("")
     const params = useParams()
     const history = useHistory()
-    const {editCourt} = useContext(CourtsContext)
+    const { editCourt } = useContext(CourtsContext)
 
     useEffect(() => {
         fetch(`/courts/${params.id}`)
@@ -40,36 +40,41 @@ function EditCourt(){
         <>
         edit court
         <form onSubmit={handleSubmit}>
-
-
-
-
-
-
-            
-        </form>
-        
-        
-        
-        
-        
-        
-
-
-
-
-
-
-        
+        <label>Park: </label>
+        <input 
+            type="text"
+            id="park"
+            value={editedCourt.park}
+            onChange={handleChange}
+        /> <br/>
+        <label>Neighborhood: </label>
+        <input
+            type="text"
+            id="neighborhood"
+            value={editedCourt.neighborhood}
+            onChange={handleChange}
+        /><br/>
+        <label>Street: </label>
+        <input 
+            type="text"
+            id="street"
+            value={editedCourt.street}
+            onChange={handleChange}
+        /> <br/>
+        <label>Notes: </label>
+        <input 
+            type="text"
+            id="notes"
+            value={editedCourt.notes}
+            onChange={handleChange}
+        /> <br/>
+        <button type="submit"> Save changes to court</button>
+    </form>
+        {errorsList}
+        <br/>
+        <Link to='/courts'>Back to all courts</Link>
         </>
-    )
-
-
-
-
-
-
-
+  )
 }
 
 
