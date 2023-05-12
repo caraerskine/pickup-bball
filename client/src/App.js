@@ -7,6 +7,7 @@ import Home from './Home'
 import NavBar from './NavBar'
 import Games from './Games'
 import Courts from './Courts'
+import EditCourt from './EditCourt'
 import { UserProvider } from './context/user'
 import { CourtsProvider } from './context/courts'
 import './App.css';

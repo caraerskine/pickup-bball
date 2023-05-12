@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { CourtsContext } from './context/courts'
 
 function EditCourt(){
@@ -7,7 +7,7 @@ function EditCourt(){
     const [editedCourt, setEditedCourt] = useState([])
     const [errorsList, setErrorsList] = useState("")
     const params = useParams()
-    const history = useHistory()
+    const navigate = useNavigate()
     const { editCourt } = useContext(CourtsContext)
 
     useEffect(() => {
@@ -17,6 +17,12 @@ function EditCourt(){
     }, [])
 
     function handleChange(e){
+        setEditedCourt((currentCourtState)=>(
+            {...currentCourtState, [e.target.name]: e.target.value}
+        ))
+    }
+
+    function handleSubmit(e){
         e.preventDefault()
         fetch(`/courts/${params.id}`, {
             method: "PATCH",
@@ -28,10 +34,10 @@ function EditCourt(){
             if (!court.errors){
                 editCourt(court)
                 alert("court data updated!")
-                history.push(`/courts`)
+                navigate(`/courts`)
             } else {
                 const errorLis = court.errors.map(error => <li>{ error }</li>)
-                setErrorsList(errorsLis)
+                setErrorsList(errorLis)
             }
         })
     }
@@ -76,20 +82,6 @@ function EditCourt(){
         </>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

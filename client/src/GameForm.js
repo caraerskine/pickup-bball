@@ -53,7 +53,7 @@ function GameForm(){
             value={contact}
             onChange={(e) => setContact(e.target.value)}
         /> <br/>
-        <input type="submit"/>
+        <button type="submit">Save game</button>
     </form>
   )
 }
