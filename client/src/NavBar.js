@@ -30,6 +30,9 @@ function NavBar() {
                 <NavLink to='/games'>
                     <button>Games</button>
                 </NavLink>
+                <NavLink to='/courts'>
+                    <button>Courts</button>
+                </NavLink>
             </div>
         )          
     } else {
