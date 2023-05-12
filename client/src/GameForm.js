@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
+import { useParams, useNavigate } from 'react-router-dom'
 
+//aka EditSighting(?)
+//my use Effect for this is in
 
 function GameForm(){
     const [time, setTime] = useState("")

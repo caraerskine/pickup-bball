@@ -4,6 +4,7 @@ import { UserContext } from './context/user'
 // import { Link } from 'react-router-dom' 
 import GameForm from './GameForm'
 
+//Not sure we keep this IDK
 
 function Games() {
     const { games, loggedIn } = useContext(UserContext);

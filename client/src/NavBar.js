@@ -31,7 +31,7 @@ function NavBar() {
                     <button>Games</button>
                 </NavLink>
                 <NavLink to='/courts'>
-                    <button>Courts</button>
+                    <button>All Courts</button>
                 </NavLink>
             </div>
         )          

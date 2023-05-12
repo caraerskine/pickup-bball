@@ -14,9 +14,8 @@ function Court(){
         <>
          {courts.map(court => (
             <div>
-                <h2>{court.park}</h2>
-                <h2>{court.neighborhood}</h2>
-                <h2>{court.street}</h2>
+                <h1>{court.park}</h1>
+                <h2>{court.neighborhood}</h2>🏀<h2>@ {court.street}</h2>
                 <p>{court.notes}</p>
                 <Link to={`/courts/${court.id}/newgame`}>
                     Add a Game 
