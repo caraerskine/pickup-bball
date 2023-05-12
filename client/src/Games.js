@@ -5,6 +5,7 @@ import { UserContext } from './context/user'
 import GameForm from './GameForm'
 
 //Not sure we keep this IDK
+//old
 
 function Games() {
     const { games, loggedIn } = useContext(UserContext);

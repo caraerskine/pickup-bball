@@ -3,6 +3,8 @@ import { useContext } from 'react'
 import { UserContext } from './context/user'
 import { useParams, Link } from 'react-router-dom'
 
+//sighting
+
 function Game() {
 
     const {user} = useContext(UserContext)
@@ -24,7 +26,7 @@ function Game() {
                         <b>Bring Ball?:</b> {game.bring_ball} <br/>
                         <b>Skill Level:</b> {game.skill_level} <br/>
                         <b>Contact info:</b> {game.contact_info} <br/>  
-                        <Link to={`games/${game.id}`}><button>Edit Games</button></Link>       
+                        <Link to={`/games/${game.id}`}><button>Edit Games</button></Link>       
                     </ol>
                     </>
                 ))}

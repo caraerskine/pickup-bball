@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 //aka EditSighting(?)
 //my use Effect for this is in
+//old
 
 function GameForm(){
     const [time, setTime] = useState("")
