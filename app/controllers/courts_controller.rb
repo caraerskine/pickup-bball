@@ -7,7 +7,7 @@ class CourtsController < ApplicationController
         end
         
         def create
-            court = Court.create!(bird_params)
+            court = Court.create!(court_params)
             render json: court, status: :created
         end
         
@@ -24,7 +24,7 @@ class CourtsController < ApplicationController
         
         private
         
-        def Court_params
+        def court_params
                 params.permit(:park, :neighborhood, :street, :notes)
         end        
 

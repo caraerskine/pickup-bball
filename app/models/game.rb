@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
-    # validates :time, :bring_ball, :skill_level, :contact_info, presence: true
-    validates :time, presence: true
+    validates :time, :skill_level, :contact_info, presence: true
+    # validates :time, presence: :true
 
     belongs_to :user
     belongs_to :court

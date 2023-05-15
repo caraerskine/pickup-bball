@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only: [:create, :index] 
+    #my friend and i were not sure if this should be in there, line 3 ", only: [:create, :index]"
 
 #POST /signup
     def create
@@ -8,14 +9,16 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity  
+            render json: {errors: user.errors.full_messages}
+            # , status: :unprocessable_entity  -- not sure if i need this line back on line 13
         end
     end
 
     def index
-        # render json: User.all
-        user = User.all
-        render json: user
+        render json: User.all
+        #or 
+        # user = User.all
+        # render json: user
     end
 
 #GET /me 

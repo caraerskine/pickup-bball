@@ -17,3 +17,7 @@ function Home() {
 
 export default Home
 
+//Nancy video example Home page that shows up after you login
+//or is what shows up when you are not logged in
+
+//when you login you get to

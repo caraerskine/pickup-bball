@@ -11,15 +11,19 @@ function UserProvider({ children } ) {
     //user IS an object
     const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
     const [games, setGames] = useState([])
+    const [errors, setErrors] = useState([])
     // const [isLoaded, setIsLoaded] = useState(false)
 
-console.log(games, "bball")
+console.log(games, "what is games")
+//this is the error I am getting because games does not load?
+//I think I have two fetches to /games 
+//but I think it is a weird combo
 
     useEffect(() => {
         fetch('/me')
         .then(response => response.json())
         .then(data => {
-            // console.log(data, "carrot")
+            console.log(data, "in the fetch of '/me'")
             if (data.error) {
                 setLoggedIn(false)
             } else {
@@ -32,6 +36,23 @@ console.log(games, "bball")
             } 
         })
     }, [])
+
+//useEffect   
+//empty dependency array to get user on mount and establish who user is
+//run this set the user in here
+//fetch the games for that user too (later on)
+//hit /me get the user
+//in the value return the user
+//the user is held in state, if the user changes we know about it
+
+//useEffect - when i refresh the page
+//hit the me route, checks user show to see if there is a user n the session hash
+//returns a user or an error
+//set the user in state 
+//setLogged in becomes true or false depending on the obejct you get back
+
+    //uncommented this Fetch to get error to go away not sure
+    //so then where is the fetch ('/me') coming from 
 
     // if (!isLoaded){
     //     return(
@@ -62,20 +83,12 @@ console.log(games, "bball")
     }
 
    
- //useEffect   
-//empty dependency array to get user on mount and establish who user is
-//run this set the user in here
-//fetch the games for that user too (later on)
-//hit /me get the user
-//in the value return the user
-//the user is held in state, if the user changes we know about it
 
-//useEffect - when i refresh the page
-//hit the me route, checks user show to see if there is a user n the session hash
-//returns a user or an error
-//set the user in state 
-//setLogged in becomes true or false depending on the obejct you get back
 
+//it is not hitting this one
+//i need this fetch
+//then I call addGame in the GameForm component to trigger this POST when I want the user to post
+//does this make sense
 const addGame = (game) => {
  fetch('/games', {
     method: 'POST',
@@ -84,10 +97,18 @@ const addGame = (game) => {
  })       
     .then(response => response.json())
     .then(data => {
+        if (data.errors) {
+            const errorsLis = data.errors.map((e) => <li>{e}</li>);
+            setErrors(errorsLis);
+    } else {    
+        console.log(data, "new with maika")
         setGames([...games, data])
-    }) 
-
+        alert("Game added!")
+        setErrors([])
+    }}) 
+    console.log(games, "in the POST '/games'")
 }
+//clear the errors once it is successful
 //all games and the new one aka data w/spread operator
 //post it after I stringify it and then add it to the existing games
 
@@ -118,7 +139,7 @@ const signup = (user) => {
     return (
         //loggedIn is now part of global state
         //component just needs to check logged in, t or f
-        <UserContext.Provider value={{user, login, logout, signup, loggedIn, games, addGame}}>
+        <UserContext.Provider value={{user, login, logout, signup, loggedIn, games, addGame, errors}}>
             {children}
         </UserContext.Provider>
 

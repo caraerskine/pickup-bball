@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2023_05_09_152240) do
     t.string "notes"
   end
 
+  #join table
   create_table "games", force: :cascade do |t|
     t.string "time"
     t.boolean "bring_ball"

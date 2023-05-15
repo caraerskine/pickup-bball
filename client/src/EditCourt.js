@@ -44,7 +44,10 @@ function EditCourt(){
 
     return(
         <>
-        edit court
+        <br/>
+        Edit court
+        <br/>
+        <br/>
         <form onSubmit={handleSubmit}>
         <label>Park: </label>
         <input 
@@ -74,7 +77,7 @@ function EditCourt(){
             value={editedCourt.notes}
             onChange={handleChange}
         /> <br/>
-        <button type="submit"> Save changes to court</button>
+        <button type="submit"> Save changes</button>
     </form>
         {errorsList}
         <br/>

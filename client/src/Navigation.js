@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const link = {
@@ -8,29 +8,29 @@ const link = {
         margin: '0 6px 6px',
         textDecoration: 'none',
         color: 'black',
-        background: 'lime'
+        background: 'orange'
 }
 
 function Navigation () {
     return (
         <div>
-            {/* <NavLink
+            <NavLink
                 to="/"
                 style={link}
                 activestyle={{background: 'blue'}}                
             >Home</NavLink>
             
           <NavLink
-                to="/artists"
+                to="/games"
                 style={link}
                 activestyle={{background: 'blue'}}
-            >Artists</NavLink>
+            >Games</NavLink>
 
            <NavLink
-                to="/paintings"
+                to="/courts"
                 style={link}
                 activestyle={{background: 'blue'}}
-            >Paintings</NavLink>  */}
+            >Courts</NavLink> 
         </div>
     )
 }

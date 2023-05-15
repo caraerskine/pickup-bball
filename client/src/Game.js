@@ -4,14 +4,15 @@ import { UserContext } from './context/user'
 import { useParams, Link } from 'react-router-dom'
 
 //sighting
+//this isn't functional
 
 function Game() {
 
     const {user} = useContext(UserContext)
     const params = useParams()
 
-    const userGames = user.games.filter(game => game.court_id == params.id)
-    const userCourt = user.courts_uniq.find(court => court.id == params.id)
+    const userGames = user.games.filter(game => game.court_id === params.id)
+    const userCourt = user.courts_uniq.find(court => court.id === params.id)
 
     if (!user || user.error){
         return <h3>Please log in to view games</h3>

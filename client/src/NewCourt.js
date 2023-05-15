@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 //update to navlink later i think
 import { CourtsContext } from './context/courts'
 
@@ -85,7 +85,7 @@ function NewCourt(){
         </form>
             {errorsList}
             <br/>
-            <Link to='/courts'>Back to all courts</Link>
+            <NavLink to='/courts'>Back to all courts</NavLink>
             </>
     )
 }

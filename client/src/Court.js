@@ -1,12 +1,18 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { CourtsContext } from './context/courts'
 
 //birds is courts
 //courts is birds
 
-//do key prop thing check old project
+//this is what comes up when I click All Courts button
+//the paths in here the URLs do not work
+//WHY
+//they just don't go anywhere so it must mean they are not in the back end
+
+//where would i put key={court.id} in here?
+
 
 function Court(){
  
@@ -16,16 +22,17 @@ function Court(){
         <>
          {courts.map(court => (
             <div>
+                🏀 🏀 🏀
                 <h1>{court.park}</h1>
-                <h2>{court.neighborhood}</h2>🏀<h2>@ {court.street}</h2>
+                <h2>{court.neighborhood}</h2><h2>@ {court.street}</h2>
                 <p>{court.notes}</p>
-                <Link to={`/courts/${court.id}/newgame`}>
+                <NavLink to={`/courts/${court.id}/newgame`}>
                     Add a Game 
-                </Link>
+                </NavLink>
                 <br/>
-                <Link to={`/courts/${court.id}/edit`}>
-                    Edit {court.park}
-                </Link>
+                <NavLink to={`/courts/${court.id}/edit`}>
+                    Edit {court.park} 
+                </NavLink>
             </div>
          ))}   
         </>
