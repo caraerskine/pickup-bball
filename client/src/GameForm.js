@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
+import { CourtsContext } from './context/courts'
 import { useParams } from 'react-router-dom'
 
 //aka EditSighting(?)
@@ -13,23 +14,29 @@ function GameForm(){
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
     const [court, setCourt] = useState("")
-    const params = useParams()
+    const { params, id } = useParams()
     const { user, addGame, errors } = useContext(UserContext)
 
+    console.log(user.courts, "courts")
+
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         addGame({
             time: time,
-            bring_ball: ball,
+            bring_ball: false,
             skill_level: skill,
             contact_info: contact,
-            // court: court,
-            court_id: 5
-            // user_id: user.id
+            court_id: id,
+            user_id: user.id
         })
-        addGame()
         console.log(addGame, "addGame is happening")
     }
+
+//drop down for court 
+//map over courts like we did in game 
+//option tags for all 7 courts
+//this shit is insane
+
 
 //addGame tells global state there is a new command in the back end and put it in global state
 //addGame is a function in user.js where the POST is 
@@ -57,7 +64,7 @@ function GameForm(){
         <select
             id="bring_ball"
             value={ball}
-            onChange={(e) => setBall(e.target.value === "true")}>
+            onChange={(e) => setBall(e.target.value === "false")}>
                 <option value={"true"}>true</option>
                 <option value={"false"}>false</option>
         </select><br/>
@@ -80,13 +87,13 @@ function GameForm(){
             placeholder="phone number"
         /> 
         <label>Court: </label>
-        <input 
-            type="text"
+        <select
+            // type="text"
             id="court"
             value={court}
-            onChange={(e) => setCourt(e.target.value)}
-            placeholder="i.e., Brower"
-        /> 
+            onChange={(e) => setCourt(e.target.value)}>
+                <option value={court}>Choose court</option>
+        </select><br/> 
         <br/>
         <br/>
         <button type="submit">Save game</button>
@@ -115,3 +122,16 @@ export default GameForm
 // i think the handle change is working just not the handle submit
 
 //bring a basketball boolean not working
+
+//delete game on game form 
+//drop down for Court in the game form to show all the available courts
+
+//COURTS
+//Read all courts (see them)
+//Create a court
+
+//GAMES
+//read all games
+//create a game
+//delete a game
+//edit a game

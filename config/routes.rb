@@ -8,10 +8,7 @@ Rails.application.routes.draw do
  post "/signup", to: "users#create" 
  get "/me", to: "users#show"
 
-
 resources :users
-# , only: [:index] 
-#used to have the above on :users line idk if I need it or if I do not
 resources :courts
 resources :games 
 
@@ -20,8 +17,10 @@ resources :games
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
 
+
 #show #me
  #whoami shows who is logged in and who the user is aka show route not seen by user
  #it is for react so it knows who the user is and the users show page
 
- #where would /games be?
+ # , only: [:index] 
+#used to have the above on :users line 11 idk if I need it or if I do not

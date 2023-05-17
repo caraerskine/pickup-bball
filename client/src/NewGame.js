@@ -106,4 +106,4 @@ function NewGame() {
 
 
 
-export default NewGame
+// export default NewGame

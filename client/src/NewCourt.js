@@ -1,7 +1,10 @@
 import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-//update to navlink later i think
 import { CourtsContext } from './context/courts'
+
+
+//will need a variable in App called onAddCourt I think and pass it down here?
+//or usecontext and user context will do that for me?
 
 function NewCourt(){
 
@@ -22,9 +25,8 @@ function NewCourt(){
             ))
         }
 
-
-        function handleSubmit(e){
-            e.preventDefaut()
+        function handleSubmit(e) {
+            e.preventDefault();
             const formData = {
                 park: newCourt.park,
                 neighborhood: newCourt.neighborhood,
@@ -57,29 +59,33 @@ function NewCourt(){
             <input 
                 type="text"
                 id="park"
-                value={newCourt.park}
+                defaultValue={newCourt.park}
                 onChange={handleChange}
+                placeholder="i.e., Palisades"  
             /> <br/>
             <label>Neighborhood: </label>
             <input
                 type="text"
                 id="neighborhood"
-                value={newCourt.neighborhood}
+                defaultValue={newCourt.neighborhood}
                 onChange={handleChange}
+                placeholder="i.e., Crown Heights"  
             /><br/>
             <label>Street: </label>
             <input 
                 type="text"
                 id="street"
-                value={newCourt.street}
+                defaultValue={newCourt.street}
                 onChange={handleChange}
+                placeholder="i.e., 22nd St."  
             /> <br/>
             <label>Notes: </label>
             <input 
                 type="text"
                 id="notes"
-                value={newCourt.notes}
+                defaultValue={newCourt.notes}
                 onChange={handleChange}
+                placeholder="i.e., NE end of park by subway stop"  
             /> <br/>
             <button type="submit"> Submit changes</button>
         </form>

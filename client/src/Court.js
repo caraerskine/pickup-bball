@@ -3,21 +3,12 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { CourtsContext } from './context/courts'
 
-//birds is courts
-//courts is birds
-
-//this is what comes up when I click All Courts button
-//the paths in here the URLs do not work
-//WHY
-//they just don't go anywhere so it must mean they are not in the back end
-
 //where would i put key={court.id} in here?
-
 
 function Court(){
  
     const { courts } = useContext(CourtsContext)
- 
+
     return (
         <>
          {courts.map(court => (

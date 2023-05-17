@@ -52,7 +52,7 @@ function SignUp() {
 
     return (
     <div className="signup-form">
-        <h2></h2>
+        <h2>Sign-up</h2>
         <form onSubmit={handleSubmit}>
             <label>Username:</label>
             <input 

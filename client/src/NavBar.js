@@ -24,16 +24,14 @@ function NavBar() {
         return (
             <div>
                 <h2>Hello {user.username} </h2>
-                <h3>Click "Logout" to logout</h3>
-                <h3>Click "Games" to see all your games</h3>
-                <h3>Click "All Courts" to see all the courts</h3>
+                <h4>Click "Logout" to logout</h4>
+                <h4>Click "Games" to see all your games</h4>
+                <h4>Click "All Courts" to see all the courts</h4>
                 <p>🗽🍎🏀</p>
                 <br/>
                 <button onClick={logoutUser}>Logout</button>
                 <NavLink to='/games'>
-                <br></br>
-                <br></br><button>Games</button><br></br>
-                    <br></br>
+                    <button>Games</button>
                 </NavLink>
                 <NavLink to='/courts'>
                     <button>All Courts</button>

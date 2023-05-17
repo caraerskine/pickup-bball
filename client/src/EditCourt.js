@@ -15,6 +15,8 @@ function EditCourt(){
         .then(response => response.json())
         .then(response => setEditedCourt(response))
     }, [])
+    
+    //either use params.id or remove dependency array was my error
 
     function handleChange(e){
         setEditedCourt((currentCourtState)=>(

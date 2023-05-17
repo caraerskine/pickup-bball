@@ -4,14 +4,12 @@ import { useContext } from 'react'
 import { UserContext } from './context/user'
 import Court from './Court'
 
-//birds is courts
-//courts is birds
 
 function Courts() {
 
-  const { user } = useContext(UserContext)
+  const { loggedIn } = useContext(UserContext)
 
-  if (!user || user.error){
+  if (!loggedIn){
       return <h3>Please login to view courts.</h3>
   } else {
       return (
@@ -26,6 +24,3 @@ function Courts() {
 }
 
 export default Courts
-
-//what is on Courts?
-//

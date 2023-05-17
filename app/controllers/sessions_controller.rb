@@ -31,4 +31,4 @@ end
 #same as if saying user && user.authenticate
 
 #login is line 10
-#render user object back on 11
+#render user object back on 12 (11 if no byebug)

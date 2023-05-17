@@ -7,10 +7,10 @@ class GamesController < ApplicationController
         # game = Game.create!(game_params)
         # render json: game, status: :created
         #ok or --
-        game = @current_user.games.create!(game_params)
+        game = Game.create!(game_params)
         render json: game, status: :created
     end
-
+#@current_user.games
      # went off model of Game instead of current_user IDFK
     #new thought but maybe not cuz it is going off model
     # def create

@@ -1,22 +1,22 @@
-import React from 'react'
+// import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navigation from './Navigation'
-import SignUp from './SignUp'
-import Login from './Login'
 import Home from './Home'
 import NavBar from './NavBar'
+import SignUp from './SignUp'
+import Login from './Login'
 import Games from './Games'
+// import Game from './Game'
 import GameForm from './GameForm'
-import NewGame from './NewGame'
-import Game from './Game'
-// import Games_b from './Games_b'
+// import NewGame from './NewGame'
 import Courts from './Courts'
-import Court from './Court'
+// import Court from './Court'
 import EditCourt from './EditCourt'
+import EditGame from './EditGame'
 import NewCourt from './NewCourt'
 import { UserProvider } from './context/user'
 import { CourtsProvider } from './context/courts'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import './App.css';
 
 
@@ -30,13 +30,22 @@ function App() {
           <NavBar />
               <Routes>
                 <Route exact path="/" element={<Home />} />
+
                 <Route exact path="/signup" element={<SignUp />} />
+                
                 <Route exact path="/login" element={<Login />} />
+                
                 <Route exact path="/games" element={<Games />} />
-                {/* <Route exact path="/games" element={<Games_b />} /> */}
+
+                <Route path="/games/:id" element={<EditGame />} />
+                
                 <Route exact path="/courts" element={<Courts />} />
+                
                 <Route path="/courts/:id/edit" element={<EditCourt />} />
+                
                 <Route path="/courts/:id/newgame" element={<GameForm />} />
+
+                <Route path="/courts/new" element={<NewCourt />} />
               </Routes>
             </CourtsProvider>
           </UserProvider>
