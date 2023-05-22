@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
-import { CourtsContext } from './context/courts'
+// import { CourtsContext } from './context/courts'
 import { useParams } from 'react-router-dom'
 
 //aka EditSighting(?)
@@ -13,11 +13,12 @@ function GameForm(){
     const [ball, setBall] = useState(false)
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
-    const [court, setCourt] = useState("")
-    const { params, id } = useParams()
+    // const [court, setCourt] = useState("")
+    const { id } = useParams()
     const { user, addGame, errors } = useContext(UserContext)
+    // const {courts} = (CourtsContext)
 
-    console.log(user.courts, "courts")
+    console.log(user.courts, "user.courts")
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -86,14 +87,14 @@ function GameForm(){
             onChange={(e) => setContact(e.target.value)}
             placeholder="phone number"
         /> 
-        <label>Court: </label>
+        {/* <label>Court: </label>
         <select
             // type="text"
             id="court"
             value={court}
             onChange={(e) => setCourt(e.target.value)}>
                 <option value={court}>Choose court</option>
-        </select><br/> 
+        </select><br/>  */}
         <br/>
         <br/>
         <button type="submit">Save game</button>

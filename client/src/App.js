@@ -8,7 +8,6 @@ import Login from './Login'
 import Games from './Games'
 // import Game from './Game'
 import GameForm from './GameForm'
-// import NewGame from './NewGame'
 import Courts from './Courts'
 // import Court from './Court'
 import EditCourt from './EditCourt'
@@ -25,6 +24,7 @@ function App() {
     <Router>
       <Navigation />
         <div className="App">
+        {console.log("App rendering")}
           <UserProvider>
            <CourtsProvider>
           <NavBar />

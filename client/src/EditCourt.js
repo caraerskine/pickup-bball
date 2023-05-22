@@ -6,17 +6,20 @@ function EditCourt(){
 
     const [editedCourt, setEditedCourt] = useState([])
     const [errorsList, setErrorsList] = useState("")
+    // const [errors, setErrors] = useState([])
     const params = useParams()
     const navigate = useNavigate()
     const { editCourt } = useContext(CourtsContext)
 
     useEffect(() => {
+        (console.log("useEffect for EditCourt '/courts/:id'"))
         fetch(`/courts/${params.id}`)
         .then(response => response.json())
         .then(response => setEditedCourt(response))
-    }, [])
+    }, [params.id])
     
-    //either use params.id or remove dependency array was my error
+    //manage state for each field
+    //either use params.id or remove dependency array was my error, why is it saying that?
 
     function handleChange(e){
         setEditedCourt((currentCourtState)=>(

@@ -9,16 +9,18 @@ function CourtsProvider( {children} ){
     const [courts, setCourts] = useState([])
 
     useEffect(() => {
+        console.log("useEffect for initial fetch for '/courts'")
         fetch('/courts')
         .then(response => {
             if (response.ok){
                 response.json().then(data => {
                     console.log(data, "new courts")
-                    setCourts(data)
+                    setTimeout(()=> setCourts(data), 3000)
+                    // setCourts(data)
                 })
             } else {
                 response.json().then(error => {
-                    console.log(error, "courts error")
+                    console.log(error, "courts load error")
                 })
             } 
         })

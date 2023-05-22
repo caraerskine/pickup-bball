@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext } from 'react'
+// import { useParams } from 'react-router-dom'
 import { UserContext } from './context/user'
 // import { NavLink } from 'react-router-dom' 
 // import GameForm from './GameForm'
@@ -8,7 +8,7 @@ import Game from './Game'
 //uses addGame fn from user.js
 
 function Games() {
-    const { user, games, loggedIn } = useContext(UserContext);
+    const { user, loggedIn } = useContext(UserContext);
     // const [form, setForm] = useState(false)
     // const params = useParams();
 
@@ -28,7 +28,7 @@ function Games() {
             <div>
                 {/* <h3>{user.username}'s Games:</h3> */}
                 {/* <br/> */}
-                {/* {displayGames} */}
+                {displayGames}
                     {/* {gamesList}               */}
                     {/* {console.log("games looks weird")} */}
                 {/* <br/> */}

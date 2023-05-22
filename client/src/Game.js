@@ -1,7 +1,7 @@
 import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from './context/user'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //sighting
 //this isn't functional

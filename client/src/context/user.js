@@ -1,20 +1,23 @@
 //src/context/user.js
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useParams } from 'react'
 
 //create context
 const UserContext = React.createContext();
 
 //create a provider component
-function UserProvider({ children } ) {
+function UserProvider( { children } ) {
     const [user, setUser] = useState({
         courts: [],
         games: []
     })
     //set useState to an empty object u r going to 'get'
     //user IS an object
+    // const {id} = useParams()   
+    // const params = useParams()
     const [loggedIn, setLoggedIn] = useState (false) //add loggedIn status
     const [games, setGames] = useState([])
     const [errors, setErrors] = useState([])
+    const [courts, setCourts] = useState([])
 
     console.log(games, "what is games")
 
@@ -75,10 +78,8 @@ function UserProvider({ children } ) {
    
 
 
-//it is not hitting this one
-//i need this fetch
-//then I call addGame in the GameForm component to trigger this POST when I want the user to post
-//does this make sense
+
+//I call addGame in the GameForm component to trigger this POST when I want the user to post
 const addGame = (game) => {
     // debugger
  fetch('/games', {
@@ -90,47 +91,97 @@ const addGame = (game) => {
     .then(data => {
         if (data.errors) {
             console.log(data, "gucci")
-            const errorsLis = data.errors.map((e) => <li>{e}</li>);
-            setErrors(errorsLis);
+            const errorLis = data.errors.map((e) => <li>{e}</li>);
+            setErrors(errorLis);
     } else {    
         console.log(data, "new with maika")
         setGames([...games, data])
         alert("Game added!")
         setErrors([])
     }}) 
-    console.log(games, "in the POST '/games'")
+    console.log(games, "in the POST")
 }
 //clear the errors once it is successful
 //all games and the new one aka data w/spread operator
 //post it after I stringify it and then add it to the existing games
-//coming from Game form
+//coming from GameForm
 
 
-//patchGame fn
+//Cara's new patchGame that looks like addGame, trying to call this in EditGame component
+//so the game can be edited and it can be saved to the db
+const patchGame = (editGame) => {
+    // debugger
+    //URL after /games/ in line 115 is not right idk why
+    fetch(`/games/${games.id}`,{
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(editGame)
+    })
+    .then(response => response.json())
+    .then(editGameData => {
+        if (editGameData.errors){
+            console.log(editGameData, "new edited game today")
+            const errorLis = editGameData.errors.map(error => <li>{error}</li>)
+            setErrors(errorLis);
+        } else {
+            console.log(editGameData, "new one I made today")
+            patchGame([...games, editGameData])
+            alert("game updated!")
+            setErrors([])
+        }})
+        console.log(games, "in the PATCH")
+}
+//do i need to be taking in the event as an argument on line 109 
+//can i have patch game in line 121
+//is there anything called setErrorsList (line 118) I changed it to setErrors
+
+//old patchGame fn no fucking idea 
+//i don't think I need it 
+// const patchGame = (patchedGame) => {
+//     const updatedGames = user.games.map(game => game.id === patchedGame.id ? patchedGame : game)
+//     const updatedUser = {...user}
+//     updatedUser.games = updatedGames
+//     setUser(updatedUser)
+// }
+
+//old deleteGame fn
+// const deleteGame = (deletedGameId, userCourt) => {
+//     const updatedGames = user.games.filter(game => game.id !== deletedGameId)
+//     const updatedUser = {...user}
+//     updatedUser.games = updatedGames
+//     if((userCourt.games.find(game => game.user_id === user.id)) === undefined){
+//         const updatedCourts = updatedUser.courts_uniq.filter(court => court.id !== userCourt.id)
+//         console.log(updatedCourts)
+//         updatedUser.courts_uniq = updatedCourts
+//         setUser(updatedUser)
+//     } else {
+//         setUser(updatedUser)
+//     }
+// }
 
 
-const patchGame = (patchedGame) => {
-    const updatedGames = user.games.map(game => game.id === patchedGame.id ? patchedGame : game)
-    const updatedUser = {...user}
-    updatedUser.games = updatedGames
-    setUser(updatedUser)
+//new Delete game fn
+//does this make any sense
+function deleteGame(deletedGameId) {
+    const updatedGame = games.filter((g) => g.id !== deletedGameId.id)
+    setGames(updatedGame)
+
+    const updatedCourts = courts.map((c) => {
+        if (c.id === deletedGameId.court_id) {
+            return {
+                ...c,
+                games: c.games.filer((g) => g.id !== deletedGameId.id)
+            }
+        } else {
+            return c
+        }
+    })
+        setCourts(updatedCourts)
 }
 
-//deleteGame fn
-const deleteGame = (deletedGameId, userCourt) => {
-    const updatedGames = user.games.filter(game => game.id !== deletedGameId)
-    const updatedUser = {...user}
-    updatedUser.games = updatedGames
-    if((userCourt.games.find(game => game.user_id === user.id)) === undefined){
-        const updatedCourts = updatedUser.courts_uniq.filter(court => court.id !== userCourt.id)
-        console.log(updatedCourts)
-        updatedUser.courts_uniq = updatedCourts
-        setUser(updatedUser)
-    } else {
-        setUser(updatedUser)
-    }
-}
 
+//useContext makes anything in user.js makes usecontext hook let you pass it
+//combine Courts with user.js 
 
 
 const login = (user) => {
