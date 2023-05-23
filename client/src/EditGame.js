@@ -23,6 +23,8 @@ function EditGame() {
 
 
 //pass user down from global state aka useContext
+//am I missing a useEffect? I can't tell if i need one. I would say i do not becasue I am 
+//editing something that is already there
 
     console.log(user, "user data")
 
