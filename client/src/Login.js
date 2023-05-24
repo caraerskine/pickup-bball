@@ -10,7 +10,7 @@ function Login(){
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const navigate = useNavigate()
-    const {login} = useContext(UserContext);
+    const {login, setUser} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,6 +26,7 @@ function Login(){
           if (response.ok){
             response.json().then(user => {
               login(user)
+              setUser(user)
               navigate('/games')
             })
           } else {

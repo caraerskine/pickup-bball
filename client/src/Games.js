@@ -1,55 +1,63 @@
-import React, { useContext } from 'react'
-// import { useParams } from 'react-router-dom'
-import { UserContext } from './context/user'
-// import { NavLink } from 'react-router-dom' 
-// import GameForm from './GameForm'
-import Game from './Game'
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "./context/user";
+import { Link } from "react-router-dom";
 
-//uses addGame fn from user.js
+
+const arr = [{
+    time: "", 
+    bring_ball: "", 
+    skill_level: "", 
+    contact_info: "",
+    id: 0, 
+    username: ""
+}]
 
 function Games() {
-    const { user, loggedIn } = useContext(UserContext);
-    // const [form, setForm] = useState(false)
-    // const params = useParams();
+  const { games, user, loggedIn } = useContext(UserContext);
 
-    // const addGame = () => {
-    //     setForm(false)
-    // }
+  const [myInfo, setMyInfo] = useState(arr)
+  const [name, setMyName] = useState("")
 
-    if (loggedIn) {
-    
-        // console.log(gamesList, "Logged in so that's good")
+  useEffect(() => {
+        setMyInfo(games)
+        setMyName(user.username)
+  }, [user, games.length]);
 
-        const displayGames = user?.games?.map((game) => 
-            <Game game={game} />
-        )
+  const displayGames = myInfo.map((g) => {
+    return (
+        <div>
+            <ol>
+                <b>Time:</b>{g.time} <br />
+                <b>Bring Ball?:</b> {g.bring_ball} <br />
+                <b>Skill Level:</b> {g.skill_level} <br />
+                <b>Contact info:</b> {g.contact_info} <br />
+            <Link to={`/games/${g.id}`}><button>Edit this Game</button></Link>
+            </ol>
+        </div>
+    );
+  });
 
-        return (
-            <div>
-                {/* <h3>{user.username}'s Games:</h3> */}
-                {/* <br/> */}
-                {displayGames}
-                    {/* {gamesList}               */}
-                    {/* {console.log("games looks weird")} */}
-                {/* <br/> */}
-                <Game />
-                {/* {setForm ? 
-                    <Game />
-                    :
-                    <button onClick={() => addGame(true)}>Add Game</button>
-                } */}
-            </div>
-        )
-    } else {
-        return (
-            <h3>Not Authorized - Please Signup or Login</h3>
-        )
-    }        
+  //update display games and populate the info
+  //try to find the main user
+  //set a useEffect on it to fetch data
+  //then it will be available to the rest of the app
+
+  //5-24-23
+  //i logged out and had 3 games 
+  //when I logged back in, my games did not display
+
+  //chatgpt suggested I do games.length instead of games
+
+  if (loggedIn) {
+    return (
+    <div>
+         <h2>{name}'s Games:</h2>
+        {displayGames}
+    </div>
+    );
+  } else {
+    return <h3>Not Authorized - Please Signup or Login</h3>;
+  }
 }
 
-
-
-export default Games
-
-//min 33:46 in Sample Build video not sure
-//she has GameLinks and Game as well so idk 
+export default Games;

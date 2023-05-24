@@ -6,7 +6,6 @@ import NavBar from './NavBar'
 import SignUp from './SignUp'
 import Login from './Login'
 import Games from './Games'
-// import Game from './Game'
 import GameForm from './GameForm'
 import Courts from './Courts'
 // import Court from './Court'
@@ -17,6 +16,10 @@ import { UserProvider } from './context/user'
 import { CourtsProvider } from './context/courts'
 // import { NavLink } from 'react-router-dom'
 import './App.css';
+
+
+
+//ternary in this comopenent for Games
 
 
 function App() {

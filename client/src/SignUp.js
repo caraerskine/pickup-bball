@@ -7,7 +7,7 @@ function SignUp() {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
-    const {signup} = useContext(UserContext);
+    const {signup, setUser} = useContext(UserContext);
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -27,6 +27,7 @@ function SignUp() {
             if (!user.errors) {
                 //check for errors, if none, calls signup user which is a function in user.js (context)
                 signup(user)
+                setUser(user)
                 navigate('/')
             } else {
                 setUsername("")

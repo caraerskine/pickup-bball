@@ -19,7 +19,7 @@ function NavBar() {
     }
     //takes user out of session hash
     //navigate to the home
-
+console.log(user, "user.username")
     if (loggedIn) {
         return (
             <div>

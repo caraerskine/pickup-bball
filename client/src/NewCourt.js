@@ -6,6 +6,11 @@ import { CourtsContext } from './context/courts'
 //will need a variable in App called onAddCourt I think and pass it down here?
 //or usecontext and user context will do that for me?
 
+//const addCourt = (addedCourt) => {
+//    setCourts([...courts, addedCourt])
+//}
+
+
 function NewCourt(){
 
         const initNewCourt = {
@@ -16,12 +21,13 @@ function NewCourt(){
         }
 
         const [newCourt, setNewCourt] = useState(initNewCourt)
-        const {addCourt} = useContext( CourtsContext )
+        const { addCourt } = useContext( CourtsContext )
         const [errorsList, setErrorsList] = useState("")
 
         function handleChange(e){
+            console.log(e, "e")
             setNewCourt((currentCourtState)=> (
-                {...currentCourtState, [e.target.name]: e.target.value}               
+                {...currentCourtState, [e.target.id]: e.target.value}               
             ))
         }
 
@@ -34,21 +40,24 @@ function NewCourt(){
                 notes: newCourt.notes,
             }
             fetch ('/courts', {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(formData)
             })
             .then(response => response.json())
             .then(court => {
-                if (!court.errors){
-                    addCourt(court)
-                    alert("new court data created!")
-                    setNewCourt(initNewCourt)
-                } else {
+                if (court.errors){
+                    console.log(court, "new court")
                     const errorLis = court.errors.map(error =><li>{error}</li>)
                     setErrorsList(errorLis)
+                } else {
+                    console.log(court)
+                     addCourt(court)
+                     alert("new court data created!")
+                     setNewCourt(initNewCourt)
                 }
             })
+            console.log(formData, "formData")
         }
 
         return(

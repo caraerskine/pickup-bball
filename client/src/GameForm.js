@@ -8,19 +8,22 @@ import { useParams } from 'react-router-dom'
 //old
 //also made a NewGame which might be duplicate to GameForm
 
+
+//aka NewGame
+
 function GameForm(){
     const [time, setTime] = useState("")
     const [ball, setBall] = useState(false)
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
-    // const [court, setCourt] = useState("")
     const { id } = useParams()
+    console.log(id)
     const { user, addGame, errors } = useContext(UserContext)
-    // const {courts} = (CourtsContext)
 
-    console.log(user.courts, "user.courts")
+    console.log(user.courts_uniq, "what is user")
 
     const handleSubmit = (e) => {
+        console.log(id, "court id")
         e.preventDefault();
         addGame({
             time: time,
@@ -109,20 +112,6 @@ function GameForm(){
 }
 
 export default GameForm
-
-//you can fill it out but it does not save the game
-//This button is not doing anything
-//WHY because your button type submit is an empty action
-
-//what steps do i need to take to make that action come alive?
-
-//Button does not submit
-//on the button being "clicked" you need to POST the game
-//why is that not happening
-//the post is not connected to the button
-// i think the handle change is working just not the handle submit
-
-//bring a basketball boolean not working
 
 //delete game on game form 
 //drop down for Court in the game form to show all the available courts

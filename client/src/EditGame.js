@@ -1,132 +1,72 @@
 import React from 'react'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { UserContext } from './context/user'
-// import { CourtsContext } from './context/courts'
 import { useNavigate, useParams } from 'react-router-dom'
-// import { NavLink } from 'react-router-dom'
 
+const obj = {
+    time: "", 
+    bring_ball: "", 
+    skill_level: "", 
+    contact_info: ""
+}
 
 function EditGame() {
-    // const [court, setCourt] = useState("")
-    // const [editGame, setEditGame] = useState([])
-    const {id} = useParams()   
+    const { id } = useParams()   
     const params = useParams()
-    const [editTime, setEditTime] = useState("")
-    const [editBall, setEditBall] = useState(false)
-    const [editSkill, setEditSkill] = useState("")
-    const [editContact, setEditContact] = useState("")
-    // const [errorsList, setErrorsList] = useState([])
-    const {patchGame, user, loggedIn, deleteGame, errors} = useContext(UserContext)
-    // const {courts} = useContext(CourtsContext)
+    const {patchGame, user, setGames, games, loggedIn, errors} = useContext(UserContext)
     const navigate = useNavigate()
-    // const userCourt = courts.find(court => court.id === editGame.court_id)
+    const [myGame, setMyGame] = useState(obj)
 
+    useEffect(() => {
+      let g = games.find((e) => {
+        console.log(typeof(e.id))
+        return e.id == id})
+        
+        console.log(g, "igor")
+        console.log(games, "chat")
+        console.log(id, "bot")
+        console.log(typeof(id))
+        g ? setMyGame(g) : setMyGame(obj)
+    }, [user, id])
 
-//pass user down from global state aka useContext
-//am I missing a useEffect? I can't tell if i need one. I would say i do not becasue I am 
-//editing something that is already there
-
-    console.log(user, "user data")
-
-    //added a handleSubmit because it was missing
     const handleSubmit = (e) => {
         e.preventDefault();
-       patchGame({
-            time: editTime,
-            bring_ball: false,
-            skill_level: editSkill,
-            contact_info: editContact,
-            court_id: id,
-            user_id: user.id
-        })
+        patchGame(myGame)
         console.log(patchGame, "patchGame is happening")
     }
 
+    function updateMyGame(e){
+        console.log(e, "e")
+        const { name, value } = e.target;
+        setMyGame({...myGame, [e.target.id]: e.target.value})
+    }
 
-
-
-    //commented out useEffect because I do not think I need it here 
-    // useEffect(() => {
-    //     (console.log("useEffect for EditGame '/games/:id'"))
-    //     fetch(`/games/${params.id}`)
-    //     .then(response => response.json())
-    //     .then(game => {
-    //         if (!game.errors){
-    //             setEditGame(game)
-    //         } else {
-    //             const errorLis = game.errors.map(error => <li>{error}</li>)
-    //             setErrorsList(errorLis)
-    //         }
-    //     })
-    // }, [])
-
-      //either use params.id or remove dependency array was my error
-
-    //fix first
-      //state for every value like you did on GameForm
-      //completely separate form from GameForm
-      //need onChange like I did on GameForm 
-      //i don't think i need a fetch here?
-      //the PATCH does not work so you get 404
-
-
-    //comment this out and make it a one line function
-    // function handleChange(e){
-    //     setEditGame(currentState => (
-    //         {...currentState, [e.target.name]: e.target.value}
-    //     ))
-    // }
-
+    //${params.id} chatGpt is saying just change to id for deleteGame and add a catch
     function handleDelete(e){
         e.preventDefault()
-        fetch(`/games/${params.id}`, {
+        fetch(`/games/${id}`, {
             method: "DELETE",
         })
         .then(response => {
             if (response.ok){
-                deleteGame(params.id)
+                let updatedGames = games.filter((game) => {
+                    return game.id != id
+                })
+                setGames(updatedGames)
+                alert("game deleted!")
+                navigate(`/games`)
             }
         })
-        alert("game deleted!")
-        navigate(`/games`)
+        
     }
-
-//userCourt was on line 85 after params.id, but idfk I took it out and i commented out that state for it)
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     editGame({
-    //         time: time,
-    //         bring_ball: false,
-    //         skill_level: skill,
-    //         contact_info: contact,
-    //         court_id: id,
-    //         user_id: user.id
-    //     })
-    //     console.log(editGame, "editGame is happening")
-
-
-
-//i put the PATCH in user.js
-        // fetch(`games/${params.id}`,{
-        //     method: "PATCH",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(editGame)
-        // })
-        // .then(response => response.json())
-        // .then(game => {
-        //     if (game.errors){
-        //         const errorLis = game.errors.map(error => <li>{error}</li>)
-        //         setErrorsList(errorLis)
-        //     } else {
-        //         patchGame(game)
-        //         alert("game updated!")
-        //     }
-        // })
 
     if (!loggedIn){
         return <h3>Please log in to view games.</h3>
-    } else {
+    } 
+    
+    if (myGame === null) {
+        return <p>Loading...</p>
+    }
         return ( 
             <form onSubmit={handleSubmit}>
                 <h4>Edit game</h4>
@@ -134,15 +74,15 @@ function EditGame() {
                 <input 
                     type="text"
                     id="time"
-                    value={editTime}
-                    onChange={(e) => setEditTime(e.target.value)}
+                    value={myGame.time}
+                    onChange={updateMyGame}
                     placeholder="i.e., 2:00 pm"  
                 /> <br/>
                 <label>Bring a basketball?</label>
                 <select
                     id="bring_ball"
-                    value={editBall}
-                    onChange={(e) => setEditBall(e.target.value === "false")}>
+                    value={myGame.bring_ball}
+                    onChange={updateMyGame}>
                         <option value={"true"}>true</option>
                         <option value={"false"}>false</option>
                 </select><br/>
@@ -151,23 +91,23 @@ function EditGame() {
                 <input 
                     type="text"
                     id="skill_level"
-                    value={editSkill}
-                    onChange={(e) => setEditSkill(e.target.value)}
+                    value={myGame.skill_level}
+                    onChange={updateMyGame}
                     placeholder="1-10 skill level"
                 /> <br/>
                 <label>Contact Info:</label>
                 <input 
                       type="text"
                       id="contact_info"
-                      value={editContact}
-                      onChange={(e) => setEditContact(e.target.value)}
+                      value={myGame.contact_info}
+                      onChange={updateMyGame}
                       placeholder="phone number"
                 />
-                {/* <label>Court:</label>
-                <select
+                {/* <label>Court:</label> */}
+                {/* <select
                     // type="text"
                     id="court"
-                    value={editGame.court}
+                    value={myGame.court_id}
                     onChange={(e) => setCourt(e.target.value)}>
                         <option value={court}>Choose court</option>
                 </select><br/> */}
@@ -184,7 +124,4 @@ function EditGame() {
             </form>
         )
     }
-}
 export default EditGame
-
-//line 55 used to have ,userCourt after params.id idfk
