@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { CourtsContext } from './context/courts'
+import { UserContext } from './context/user'
 
 //const editCourt = (editedCourt) => {
 //    const updatedCourts = courts.map(court => court.id === editedCourt.id ? editedCourt : court)
@@ -21,6 +22,7 @@ function EditCourt(){
     const [errorsList, setErrorsList] = useState("")
     // const [errors, setErrors] = useState([])
     const params = useParams()
+    const { id } = useParams()
     const navigate = useNavigate()
     const { editCourt } = useContext(CourtsContext)
 
@@ -36,7 +38,7 @@ function EditCourt(){
 
     function handleChange(e){
         setEditedCourt((currentCourtState)=>(
-            {...currentCourtState, [e.target.name]: e.target.value}
+            {...currentCourtState, [e.target.id]: e.target.value}
         ))
     }
 

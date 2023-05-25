@@ -12,13 +12,13 @@ function Court(){
     return (
         <>
          {courts.map(court => (
-            <div>
+            <div  key={court.id}>
                 🏀 🏀 🏀
                 <h1>{court.park}</h1>
                 <h2>{court.neighborhood}</h2><h2>@ {court.street}</h2>
                 <p>{court.notes}</p>
                 <NavLink to={`/courts/${court.id}/newgame`}>
-                    Add a Game 
+                    Add a Game to {court.park}
                 </NavLink>
                 <br/>
                 <NavLink to={`/courts/${court.id}/edit`}>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
-// import { CourtsContext } from './context/courts'
+import { CourtsContext } from './context/courts'
 import { useParams } from 'react-router-dom'
 
 //aka EditSighting(?)
@@ -19,6 +19,7 @@ function GameForm(){
     const { id } = useParams()
     console.log(id)
     const { user, addGame, errors } = useContext(UserContext)
+    const { courts } = useContext(CourtsContext)
 
     console.log(user.courts_uniq, "what is user")
 
@@ -54,7 +55,11 @@ function GameForm(){
   return (
     //print errors
     <form onSubmit={handleSubmit}>
-        <h4>Add new game</h4>
+        <h4>Add new game to {courts.map(court => (
+            <div>
+                {/* <p>{user.courts_uniq}</p> */}
+            </div>
+        ))}</h4>
         <label>Time: </label>
         <input 
             type="text"
@@ -89,16 +94,15 @@ function GameForm(){
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             placeholder="phone number"
-        /> 
-        {/* <label>Court: </label>
-        <select
-            // type="text"
-            id="court"
-            value={court}
-            onChange={(e) => setCourt(e.target.value)}>
-                <option value={court}>Choose court</option>
-        </select><br/>  */}
+        />  <br/>
         <br/>
+        {/* <label>Court: </label> */}
+        {/* {courts.map(court => (
+            <div>
+                {court.park}
+            </div>
+        ))} */}
+        {/* <br/> */}
         <br/>
         <button type="submit">Save game</button>
 
@@ -117,11 +121,14 @@ export default GameForm
 //drop down for Court in the game form to show all the available courts
 
 //COURTS
-//Read all courts (see them)
-//Create a court
+//Read all courts (see them) xx
+//Create a court xx
+//stretch goals --
+//edit a court
+//delete a court
 
 //GAMES
-//read all games
-//create a game
-//delete a game
-//edit a game
+//read all games xx
+//create a game xx
+//delete a game xx
+//edit a game xx
