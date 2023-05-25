@@ -40,6 +40,22 @@ function Games() {
     );
   });
 
+  if (loggedIn) {
+    return (
+    <div>
+         <h2>{name}'s Games:</h2>
+        {displayGames}
+    </div>
+    );
+  } else {
+    return <h3>Not Authorized - Please Signup or Login</h3>;
+  }
+}
+
+export default Games;
+
+
+
 //I would like to also be able to see the court it is on
 //I can see the court id but i want the name to show up 
 
@@ -62,7 +78,7 @@ function Games() {
 
   //look everywhere where user is used
   //look for where user 
-  //1. write an async function is for where the first useEffect is in user
+  //1. write an async function where the first useEffect is in user
   //2. write a ternary for you route that renders games is local user valid
   //an empty object is valid 
   //set initisal user to null
@@ -73,17 +89,3 @@ function Games() {
   //async fun
   //set state
   //write ternary
-
-  if (loggedIn) {
-    return (
-    <div>
-         <h2>{name}'s Games:</h2>
-        {displayGames}
-    </div>
-    );
-  } else {
-    return <h3>Not Authorized - Please Signup or Login</h3>;
-  }
-}
-
-export default Games;

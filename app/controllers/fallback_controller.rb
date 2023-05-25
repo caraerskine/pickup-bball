@@ -11,3 +11,5 @@ class FallbackController < ActionController::Base
     render file: 'public/index.html'
   end
 end
+
+#render is failing, why?
