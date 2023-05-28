@@ -21,9 +21,7 @@ function MyCourt(){
                     Add a Game to {court.park}
                 </NavLink>
                 <br/>
-                <NavLink to={`/courts/${court.id}/edit`}>
-                    Edit {court.park} 
-                </NavLink>
+                <br/>
             </div>
          ))}   
         </>

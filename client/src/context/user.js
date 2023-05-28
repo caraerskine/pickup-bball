@@ -106,11 +106,6 @@ function UserProvider({ children }) {
         })
     }, [])
 
-    const editCourt = (editedCourt) => {
-        const updatedCourts = courts.map(court => court.id === editedCourt.id ? editedCourt : court)
-        setCourts(updatedCourts)
-    }
-
     const addCourt = (addedCourt) => {
         setCourts([...courts, addedCourt])
     }
@@ -226,7 +221,6 @@ function UserProvider({ children }) {
         patchGame,
         errors,
         addCourt,
-        editCourt,
         courts,
         setCourts
       }}

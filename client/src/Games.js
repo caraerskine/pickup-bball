@@ -30,10 +30,10 @@ function Games() {
                 <b>Court:</b> {g.court_name} <br />
                 <b>Time:</b>{g.time} <br />
                 <b>Bring a Basketball?:</b> {g.bring_ball}
-                <select>
+                {/* <select>
                     <option>true</option>
                     <option>false</option>
-                </select>
+                </select> */}
                 <br />
                 <b>Skill Level:</b> {g.skill_level} <br />
                 <b>Contact info:</b> {g.contact_info} <br />
@@ -76,16 +76,4 @@ export default Games;
   //once thee promise is returned the app is re-rendered
   //and then user is valid and games rendered
 
-  //look everywhere where user is used
-  //look for where user 
-  //1. write an async function where the first useEffect is in user
-  //2. write a ternary for you route that renders games is local user valid
-  //an empty object is valid 
-  //set initisal user to null
-  //then set your user with the object you get from thae back end
-  //ternary for local user route games other wise route loading games 
-
-  //chatgpt step by tsep
-  //async fun
-  //set state
-  //write ternary
+ 

@@ -15,7 +15,11 @@ function Courts() {
       return (
           <>
           <Link to='/courts/new'>
-            <div>Create a new court</div>
+            <br></br>
+              <div>
+                <h3>Create a new court</h3>
+              </div>
+            <br></br>
           </Link> 
             <MyCourt />
           </>
