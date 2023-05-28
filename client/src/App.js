@@ -8,7 +8,7 @@ import Login from './Login'
 import Games from './Games'
 import GameForm from './GameForm'
 import AllCourts from './AllCourts'
-import EditCourt from './EditCourt'
+// import EditCourt from './EditCourt'
 import EditGame from './EditGame'
 import NewCourt from './NewCourt'
 import './App.css';
@@ -41,7 +41,7 @@ function App() {
                 
                 <Route path="/courts" element={<AllCourts />} />
                 
-                <Route path="/courts/:id/edit" element={<EditCourt />} />
+                {/* <Route path="/courts/:id/edit" element={<EditCourt />} /> */}
                 
                 <Route path="/courts/:id/newgame" element={<GameForm />} />
 

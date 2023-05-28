@@ -11,7 +11,6 @@ function GameForm(){
     const { id } = useParams()
     console.log(id)
     const { user, addGame, errors } = useContext(UserContext)
-    const { courts } = useContext(UserContext)
 
     console.log(user.courts_uniq, "what is user")
 
@@ -28,11 +27,6 @@ function GameForm(){
         })
         console.log(addGame, "addGame is happening")
     }
-
-    // const drops = [
-    //     {value: "true"},
-    //     {value: "false"}
-    // ]
 
 //drop down for court 
 //map over courts like we did in game 
@@ -52,11 +46,6 @@ function GameForm(){
   return (
     //print errors
     <form onSubmit={handleSubmit}>
-        <h4>Add new game to {courts.map(court => (
-            <div>
-                {/* <p>{user.courts_uniq}</p> */}
-            </div>
-        ))}</h4>
         <label>Time: </label>
         <input 
             type="text"
@@ -71,12 +60,8 @@ function GameForm(){
             id="bring_ball"
             value={ball}
             onChange={(e) => setBall(e.target.value === "false")}>
-                {/* {drops.map((drop) => (
-                    <div key= {drop.value}>
-                    </div>
-                ))} */}
-                <option>true</option>
-                <option>false</option>
+                <option value={"true"}>true</option>
+                <option value={"false"}>false</option>
         </select><br/>
         <br/>
         <label>Skill Level: </label>

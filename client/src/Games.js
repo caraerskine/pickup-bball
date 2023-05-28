@@ -18,18 +18,23 @@ function Games() {
   console.log(user, "from Games")
 
   if (!user.games && user){
-    return <h2>Please add some games, {user.username}!</h2>
+    return <h2>Let's play! Click "All Courts" to add some games, {user.username}!</h2>
   }
 
   if (user.games && user) {
   const displayGames = user.games.map((g) => {
-    console.log(g)
+
     return (
         <div key={g.id}> 
             <ol>
                 <b>Court:</b> {g.court_name} <br />
                 <b>Time:</b>{g.time} <br />
-                <b>Bring Ball?:</b> {g.bring_ball}<br />
+                <b>Bring a Basketball?:</b> {g.bring_ball}
+                <select>
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+                <br />
                 <b>Skill Level:</b> {g.skill_level} <br />
                 <b>Contact info:</b> {g.contact_info} <br />
                 <Link to={`/games/${g.id}`}>

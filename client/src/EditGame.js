@@ -28,10 +28,6 @@ function EditGame() {
         g ? setMyGame(g) : setMyGame(obj)
     }, [user, id])
 
-    //yellow errors suggested I add games to the dep arr ^ above idk y
-    //when I did that it 
-    //dependency array question 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         patchGame(myGame)
@@ -43,9 +39,7 @@ function EditGame() {
         const { id, value } = e.target;
         setMyGame({...myGame, [id]: value})
     }
-//should this be id instead of name ?line 46
 
-    //${params.id} chatGpt is saying just change to id for deleteGame and add a catch
     function handleDelete(e){
         e.preventDefault()
         fetch(`/games/${id}`, {
@@ -65,7 +59,7 @@ function EditGame() {
     }
 
     if (!user){
-        return <h3>Please log in to view games.</h3>
+        return <h3>Please log in to view games</h3>
     } 
     
     if (myGame === null) {
