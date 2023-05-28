@@ -1,15 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
-import { CourtsContext } from './context/courts'
 import { useParams } from 'react-router-dom'
 
-//aka EditSighting(?)
-//my use Effect for this is in -- ? user.js so it is in UseContext so hmmm
-//old
-//also made a NewGame which might be duplicate to GameForm
-
-
-//aka NewGame
 
 function GameForm(){
     const [time, setTime] = useState("")
@@ -19,7 +11,7 @@ function GameForm(){
     const { id } = useParams()
     console.log(id)
     const { user, addGame, errors } = useContext(UserContext)
-    const { courts } = useContext(CourtsContext)
+    const { courts } = useContext(UserContext)
 
     console.log(user.courts_uniq, "what is user")
 
@@ -36,6 +28,11 @@ function GameForm(){
         })
         console.log(addGame, "addGame is happening")
     }
+
+    // const drops = [
+    //     {value: "true"},
+    //     {value: "false"}
+    // ]
 
 //drop down for court 
 //map over courts like we did in game 
@@ -69,13 +66,17 @@ function GameForm(){
             placeholder="i.e., 2:00 pm"  
         /> <br/>
         <br/>
-        <label>Bring a basketball? </label>
+        <label>Bring a basketball?</label>
         <select
             id="bring_ball"
             value={ball}
             onChange={(e) => setBall(e.target.value === "false")}>
-                <option value={"true"}>true</option>
-                <option value={"false"}>false</option>
+                {/* {drops.map((drop) => (
+                    <div key= {drop.value}>
+                    </div>
+                ))} */}
+                <option>true</option>
+                <option>false</option>
         </select><br/>
         <br/>
         <label>Skill Level: </label>
@@ -96,13 +97,6 @@ function GameForm(){
             placeholder="phone number"
         />  <br/>
         <br/>
-        {/* <label>Court: </label> */}
-        {/* {courts.map(court => (
-            <div>
-                {court.park}
-            </div>
-        ))} */}
-        {/* <br/> */}
         <br/>
         <button type="submit">Save game</button>
 

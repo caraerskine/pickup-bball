@@ -3,43 +3,47 @@ import { useContext, useState, useEffect } from 'react'
 import { UserContext } from './context/user'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const obj = {
-    time: "", 
-    bring_ball: "", 
-    skill_level: "", 
-    contact_info: ""
-}
+//changed to false from ""
 
 function EditGame() {
     const { id } = useParams()   
     const params = useParams()
-    const {patchGame, user, setGames, games, loggedIn, errors} = useContext(UserContext)
+    const {patchGame, user, setUser, errors} = useContext(UserContext)
     const navigate = useNavigate()
+    const obj = {
+        time: "", 
+        bring_ball: "", 
+        skill_level: "", 
+        contact_info: "",
+        id: id
+    }
     const [myGame, setMyGame] = useState(obj)
 
     useEffect(() => {
-      let g = games.find((e) => {
+      let g = user.games.find((e) => {
         console.log(typeof(e.id))
-        return e.id == id})
         
-        console.log(g, "igor")
-        console.log(games, "chat")
-        console.log(id, "bot")
-        console.log(typeof(id))
+        return e.id == id})
+
         g ? setMyGame(g) : setMyGame(obj)
     }, [user, id])
+
+    //yellow errors suggested I add games to the dep arr ^ above idk y
+    //when I did that it 
+    //dependency array question 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         patchGame(myGame)
-        console.log(patchGame, "patchGame is happening")
+        console.log(myGame, "patchGame is happening")
     }
 
     function updateMyGame(e){
         console.log(e, "e")
-        const { name, value } = e.target;
-        setMyGame({...myGame, [e.target.id]: e.target.value})
+        const { id, value } = e.target;
+        setMyGame({...myGame, [id]: value})
     }
+//should this be id instead of name ?line 46
 
     //${params.id} chatGpt is saying just change to id for deleteGame and add a catch
     function handleDelete(e){
@@ -49,10 +53,10 @@ function EditGame() {
         })
         .then(response => {
             if (response.ok){
-                let updatedGames = games.filter((game) => {
+                let updatedGames = user.games.filter((game) => {
                     return game.id != id
                 })
-                setGames(updatedGames)
+                setUser({...user, games: updatedGames})
                 alert("game deleted!")
                 navigate(`/games`)
             }
@@ -60,7 +64,7 @@ function EditGame() {
         
     }
 
-    if (!loggedIn){
+    if (!user){
         return <h3>Please log in to view games.</h3>
     } 
     

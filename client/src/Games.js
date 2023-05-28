@@ -13,25 +13,25 @@ const arr = [{
 }]
 
 function Games() {
-  const { games, user, loggedIn } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  const [myInfo, setMyInfo] = useState(arr)
-  const [name, setMyName] = useState("")
+  console.log(user, "from Games")
 
-  useEffect(() => {
-        setMyInfo(games)
-        setMyName(user.username)
-  }, [user, games.length]);
+  if (!user.games && user){
+    return <h2>Please add some games, {user.username}!</h2>
+  }
 
-  const displayGames = myInfo.map((g) => {
+  if (user.games && user) {
+  const displayGames = user.games.map((g) => {
+    console.log(g)
     return (
         <div key={g.id}> 
             <ol>
+                <b>Court:</b> {g.court_name} <br />
                 <b>Time:</b>{g.time} <br />
-                <b>Bring Ball?:</b> {g.bring_ball} <br />
+                <b>Bring Ball?:</b> {g.bring_ball}<br />
                 <b>Skill Level:</b> {g.skill_level} <br />
                 <b>Contact info:</b> {g.contact_info} <br />
-                {/* <b>Court:</b> {g.court_id} <br /> */}
                 <Link to={`/games/${g.id}`}>
                   <button>Edit this Game</button>
                 </Link>
@@ -39,22 +39,17 @@ function Games() {
         </div>
     );
   });
+    return <div> {displayGames} </div>;
+ }
 
-  if (loggedIn) {
-    return (
-    <div>
-         <h2>{name}'s Games:</h2>
-        {displayGames}
-    </div>
-    );
-  } else {
-    return <h3>Not Authorized - Please Signup or Login</h3>;
-  }
+    return <div></div>
 }
 
 export default Games;
 
-
+//bring_ball does not show up once the game is created
+//hmmmm
+//used to just be {g.bring_ball}
 
 //I would like to also be able to see the court it is on
 //I can see the court id but i want the name to show up 

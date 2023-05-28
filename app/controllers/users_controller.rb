@@ -15,7 +15,11 @@ class UsersController < ApplicationController
     end
 
     def index
-        render json: User.all
+        user = User.create(user_params)
+        if user.valid?
+            render json: User.first
+        end
+        # render json: User.all
         #or 
         # user = User.all
         # render json: user
@@ -26,8 +30,12 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         # byebug
-        render json: user            
-    end    
+        if user
+            render json: user, status: :ok
+        else
+            render json: {errors: user.errors.full_messages}, status: :unauthorized            
+        end    
+    end
 
     private
 

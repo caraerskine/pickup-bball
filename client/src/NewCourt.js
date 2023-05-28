@@ -1,14 +1,6 @@
 import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { CourtsContext } from './context/courts'
-
-
-//will need a variable in App called onAddCourt I think and pass it down here?
-//or usecontext and user context will do that for me?
-
-//const addCourt = (addedCourt) => {
-//    setCourts([...courts, addedCourt])
-//}
+import { UserContext } from './context/user'
 
 
 function NewCourt(){
@@ -21,7 +13,7 @@ function NewCourt(){
         }
 
         const [newCourt, setNewCourt] = useState(initNewCourt)
-        const { addCourt } = useContext( CourtsContext )
+        const { addCourt } = useContext( UserContext )
         const [errorsList, setErrorsList] = useState("")
 
         function handleChange(e){

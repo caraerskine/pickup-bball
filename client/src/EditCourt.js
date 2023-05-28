@@ -1,21 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { CourtsContext } from './context/courts'
 import { UserContext } from './context/user'
 
-//const editCourt = (editedCourt) => {
-//    const updatedCourts = courts.map(court => court.id === editedCourt.id ? editedCourt : court)
-//    setCourts(updatedCourts)
-//}
-
-//from CourtsContext ^ addCourt cb fn
-
-const courtObj = {
-    park: "",
-    neighborhood: "",
-    street: "",
-    notes: ""
-}
+// const courtObj = {
+//     park: "",
+//     neighborhood: "",
+//     street: "",
+//     notes: ""
+// }
 
 function EditCourt(){
     const [editedCourt, setEditedCourt] = useState([])
@@ -24,7 +16,7 @@ function EditCourt(){
     const params = useParams()
     const { id } = useParams()
     const navigate = useNavigate()
-    const { editCourt } = useContext(CourtsContext)
+    const { editCourt } = useContext(UserContext)
 
     useEffect(() => {
         (console.log("useEffect for EditCourt '/courts/:id'"))

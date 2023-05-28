@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom' 
 import { useContext } from 'react'
 import { UserContext } from './context/user'
-import Court from './Court'
+import MyCourt from './MyCourt'
 
 
 function Courts() {
 
-  const { loggedIn } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
-  if (!loggedIn){
+  if (!user){
       return <h3>Please login to view courts.</h3>
   } else {
       return (
@@ -17,7 +17,7 @@ function Courts() {
           <Link to='/courts/new'>
             <div>Create a new court</div>
           </Link> 
-          <Court />
+            <MyCourt />
           </>
     )
   }

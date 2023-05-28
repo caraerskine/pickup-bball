@@ -1,5 +1,5 @@
-// import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Route, Routes } from 'react-router-dom'
 import Navigation from './Navigation'
 import Home from './Home'
 import NavBar from './NavBar'
@@ -7,42 +7,39 @@ import SignUp from './SignUp'
 import Login from './Login'
 import Games from './Games'
 import GameForm from './GameForm'
-import Courts from './Courts'
-// import Court from './Court'
+import AllCourts from './AllCourts'
 import EditCourt from './EditCourt'
 import EditGame from './EditGame'
 import NewCourt from './NewCourt'
-import { UserProvider } from './context/user'
-import { CourtsProvider } from './context/courts'
-// import { NavLink } from 'react-router-dom'
 import './App.css';
+import { UserContext } from './context/user'
 
-
-
-//ternary in this comopenent for Games
 
 
 function App() {
+
   return (
-    <Router>
+  <div>
       <Navigation />
         <div className="App">
         {console.log("App rendering")}
-          <UserProvider>
-           <CourtsProvider>
           <NavBar />
               <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route path="/" element={<Home />} />
 
-                <Route exact path="/signup" element={<SignUp />} />
+                <Route path="/games" element={<Games />}/>
+      
+                <Route path="/games/:id" element={<EditGame />}/>
+                   
+                <Route path="/signup" element={<SignUp />} />
                 
-                <Route exact path="/login" element={<Login />} />
+                <Route path="/login" element={<Login />} />
                 
-                <Route exact path="/games" element={<Games />} />
-
-                <Route path="/games/:id" element={<EditGame />} />
+                <Route path="/games" element={<Games />} />
+                    
+                <Route path="/games/:id" element={<EditGame />} /> 
                 
-                <Route exact path="/courts" element={<Courts />} />
+                <Route path="/courts" element={<AllCourts />} />
                 
                 <Route path="/courts/:id/edit" element={<EditCourt />} />
                 
@@ -50,10 +47,8 @@ function App() {
 
                 <Route path="/courts/new" element={<NewCourt />} />
               </Routes>
-            </CourtsProvider>
-          </UserProvider>
         </div>
-    </Router>
+  </div>
 
   );
 }

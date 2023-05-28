@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 
 function NavBar() {
-    const {user, logout, loggedIn} = useContext(UserContext)
+    const {user, logout} = useContext(UserContext)
     const navigate = useNavigate()
 
     const logoutUser = () => {
@@ -19,14 +19,14 @@ function NavBar() {
     }
     //takes user out of session hash
     //navigate to the home
-console.log(user, "user.username")
-    if (loggedIn) {
+
+    if (user) {
         return (
             <div>
                 <h2>Hello {user.username} </h2>
                 <h4>Click "Logout" to logout</h4>
-                <h4>Click "Games" to see all your games</h4>
-                <h4>Click "All Courts" to see all the courts</h4>
+                <h4>Click "Games" to see all your basketball games</h4>
+                <h4>Click "All Courts" to see all the basketball courts</h4>
                 <p>🗽🍎🏀</p>
                 <br/>
                 <button onClick={logoutUser}>Logout</button>

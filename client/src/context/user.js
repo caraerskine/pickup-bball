@@ -1,68 +1,127 @@
 //src/context/user.js
 import React, { useState, useEffect, useParams } from "react";
-import Games from "../Games";
+import { useNavigate } from "react-router-dom";
 
 //create context
 const UserContext = React.createContext();
 
 //create a provider component
 function UserProvider({ children }) {
-  const [user, setUser] = useState({
-    courts: [],
-    games: [],
-  });
+  const [user, setUser] = useState(false);
   //set useState to an empty object u r going to 'get'
   //user IS an object
   // const {id} = useParams()
   // const params = useParams()
-  const [loggedIn, setLoggedIn] = useState(false); //add loggedIn status
-  const [games, setGames] = useState([]);
   const [errors, setErrors] = useState([]);
   const [courts, setCourts] = useState([]);
+  const [signUpError, setSignUpError] = useState([]);
+  const [loginError, setLoginError] = useState([]);
+  const [autoLoginError, setAutoLoginError] = useState([]);
+  const navigate = useNavigate()
 
-  console.log(games, "what is games");
 
-  //original one before you tried to write async await at the bottom here
   useEffect(() => {
-    fetch("/me")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data, "in the fetch of '/me'");
-        if (data.errors) {
-          setLoggedIn(false);
-        } else {
-          setUser(data);
-          setLoggedIn(true);
-          setGames(data.games);
-        }
-      });
+    fetchUser('/me', 'GET')
   }, []);
 
-// useEffect(() => {
-//     const fetchUserData = async () => {
-//       try {
-//         const response = await fetch("/me");
-//         const data = await response.json();
-  
-//         console.log(data, "in the fetch of '/me'");
-//         if (data.errors) {
-//           setLoggedIn(false);
-//         } else {
-//           setUser(data);
-//           setLoggedIn(true);
-//           await fetchUserGames(); // Call the async function to load the user's games
-//         }
-//       } catch (error) {
-//         console.error('Error fetching user data:', error);
-//       }
-//     };
-  
-//     fetchUserData();
-//   }, []);
+  const fetchUser = async (url, method, body = false) => {
+    try {
+      const options = {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      if (body) {
+        options.body = JSON.stringify(body);
+      }
+      const response = await fetch(url, options);
+       console.log("Response Not Ok")
+      const data = await response.json();
+        console.log(data, "in the fetch of '/me'");
+      if (data.errors) {
+        let err = data.errors.map((e) => <li>{e}</li>)
+        
+        if (url === "/signup"){
+          setSignUpError(err)
+        } else if (url === "/login") {
+          setLoginError(err)
+        } else {
+          setAutoLoginError(err)
+        }
+      } else {
+        setUser(data);
+        navigate('/games');
+      }
+    } catch (error) {
+      let message = [<li>Server Unresponsive</li>]
+         
+      if (url === "/signup"){
+        setSignUpError(message)
+      } else if (url === "/login") {
+        setLoginError(message)
+      } else {
+        setAutoLoginError(message)
+      }
+      console.log("error", error)
+    }
+  };
+  //async await fetch that hits signup, login, auto login
+  //send a url, method and a body
+  //get must be false for a get
+  //if body true then set it
+  //set another conditional in 44
+
+  //original one before you tried to write async await at the bottom here
+  // useEffect(() => {
+  //   fetch("/me")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data, "in the fetch of '/me'");
+  //       if (data.errors) {
+  //         setLoggedIn(false);
+  //       } else {
+  //         setUser(data);
+  //         setLoggedIn(true);
+  //         setGames(data.games);
+  //       }
+  //     });
+  // }, []);
+
+
+    useEffect(() => {
+        console.log("useEffect for initial fetch for '/courts'")
+        fetch('/courts')
+        .then(response => {
+            if (response.ok){
+                response.json().then(data => {
+                    console.log(data, "new courts")
+                    setCourts(data)
+                })
+            } else {
+                response.json().then(error => {
+                    console.log(error.error, "courts load error")
+                })
+            } 
+        })
+    }, [])
+
+    const editCourt = (editedCourt) => {
+        const updatedCourts = courts.map(court => court.id === editedCourt.id ? editedCourt : court)
+        setCourts(updatedCourts)
+    }
+
+    const addCourt = (addedCourt) => {
+        setCourts([...courts, addedCourt])
+    }
+
+  //make one for login and signup too
+  //then i can combo it all in one 
+  //helper function
   
 //   const fetchUserGames = async () => {
 //     try {
-//       const response = await fetch(``);
+//       const response = await fetch(`/me`);
 //       const gamesData = await response.json();
 //       setGames(gamesData);
 //     } catch (error) {
@@ -106,12 +165,11 @@ function UserProvider({ children }) {
           setErrors(errorLis);
         } else {
           console.log(data);
-          setGames([...games, data]);
+          setUser({...user, games: [...user.games, data]})
           alert("Game added!");
           setErrors([]);
         }
       });
-    console.log(games, "in the POST");
   };
   //clear the errors once it is successful
   //all games and the new one aka data w/spread operator
@@ -133,43 +191,24 @@ function UserProvider({ children }) {
           const errorLis = editGameData.errors.map((error) => <li>{error}</li>);
           setErrors(errorLis);
         } else {
-          console.log(editGameData, "new one I made today");
-          const newGames = games.map((game) => {
-            console.log(typeof game.id);
-            console.log(typeof editGame.id);
+          const newGames = user.games.map((game) => {
             if (game.id === editGame.id) {
               return editGameData;
             } else {
               return game;
             }
           });
-          setGames(newGames);
+          setUser({...user, games: newGames});
           alert("game updated!");
           setErrors([]);
         }
       });
-    console.log(games, "in the PATCH");
-  };
-
-  const login = (user) => {
-    setUser(user);
-    // fetchGames()
-    setLoggedIn(true);
   };
 
   const logout = () => {
-    setUser({});
-    setGames([]);
-    setLoggedIn(false); //loggedIn now becomes false
-  };
+    setUser(false)
+  }
 
-  const signup = (user) => {
-    setUser(user);
-    // fetchGames()
-    setLoggedIn(true); //becomes true as they signed up
-  };
-  //setUser in state ^
-  //who needs acess to global state
 
   return (
     //loggedIn is now part of global state
@@ -178,15 +217,18 @@ function UserProvider({ children }) {
       value={{
         user,
         setUser,
-        login,
+        fetchUser,
+        signUpError,
+        loginError,
+        autoLoginError,
         logout,
-        signup,
-        loggedIn,
-        games,
-        setGames,
         addGame,
         patchGame,
         errors,
+        addCourt,
+        editCourt,
+        courts,
+        setCourts
       }}
     >
       {children}

@@ -82,7 +82,7 @@ class GamesController < ApplicationController
 #returns current user object 
 
     def game_params
-        params.permit(:time, :bring_ball, :skill_level, :contact_info, :user_id, :court_id)
+        params.permit(:time, :bring_ball, :id, :skill_level, :contact_info, :user_id, :court_id)
     end
 
     #nancy's

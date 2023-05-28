@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
-import { CourtsContext } from './context/courts'
+import { UserContext } from './context/user'
 
 //where would i put key={court.id} in here?
 
-function Court(){
+function MyCourt(){
  
-    const { courts } = useContext(CourtsContext)
+    const { courts } = useContext(UserContext)
 
     return (
         <>
@@ -31,4 +31,4 @@ function Court(){
 }
 
 
-export default Court
+export default MyCourt
