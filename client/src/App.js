@@ -11,7 +11,6 @@ import AllCourts from './AllCourts'
 import EditGame from './EditGame'
 import NewCourt from './NewCourt'
 import './App.css';
-// import { UserContext } from './context/user'
 
 
 
@@ -21,7 +20,6 @@ function App() {
   <div>
       <Navigation />
         <div className="App">
-        {console.log("App rendering")}
           <NavBar />
               <Routes>
                 <Route path="/" element={<Home />} />

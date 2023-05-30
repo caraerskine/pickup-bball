@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from './context/user'
 
-//where would i put key={court.id} in here?
 
 function MyCourt(){
  
