@@ -1,3 +1,50 @@
+
+NYC Hoop Scheduling App
+
+This is an SPA to schedule basketball games at 
+various courts all over New York City!
+
+The app has 3 navigation buttons at the top: home, games, and courts. 
+The site is secure and requires a login to see your individual games. 
+All users can see all the basketball courts.
+You can add a game to a court, delete a game, and edit your game. 
+You can also add a court to the list of courts.
+
+Goals achieved:
+CREATE
+-Allow users to add a new court
+-Allow users to add a new game
+
+READ 
+-Display data of courts
+-Display data of games
+
+UPDATE
+-Allow users to edit a game
+
+DELETE
+-Allow users to delete a game
+
+URL of repo
+https://github.com/caraerskine/pickup-bball.git
+
+How to run it:
+-You must have the backend running to make this project 
+work. In the console, run rails s from within the directory 
+pickup-bball
+    
+-You need React to run the front end from
+within the directory
+pickup-bball
+Run npm install and npm run server
+Open a second terminal window and run npm start
+   
+Let's hoop! 🏀
+
+
+
+
+
 # Project Template: React/Rails API
 
 ## Description
