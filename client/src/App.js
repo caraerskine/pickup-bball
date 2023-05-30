@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom'
 import Navigation from './Navigation'
 import Home from './Home'
@@ -11,7 +11,7 @@ import AllCourts from './AllCourts'
 import EditGame from './EditGame'
 import NewCourt from './NewCourt'
 import './App.css';
-import { UserContext } from './context/user'
+// import { UserContext } from './context/user'
 
 
 

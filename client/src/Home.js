@@ -16,6 +16,7 @@ function Home() {
         
     return (
         <ul>
+            <h4>Please login to see your games!</h4>
             {autoLoginError}
         </ul>
     )

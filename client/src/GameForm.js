@@ -59,7 +59,7 @@ function GameForm(){
         <select
             id="bring_ball"
             value={ball}
-            onChange={(e) => setBall(e.target.value === "false")}>
+            onChange={(e) => setBall(e.target.value === "true")}>
                 <option value={"true"}>true</option>
                 <option value={"false"}>false</option>
         </select><br/>

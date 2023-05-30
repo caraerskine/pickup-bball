@@ -101,14 +101,6 @@ function EditGame() {
                       onChange={updateMyGame}
                       placeholder="phone number"
                 />
-                {/* <label>Court:</label> */}
-                {/* <select
-                    // type="text"
-                    id="court"
-                    value={myGame.court_id}
-                    onChange={(e) => setCourt(e.target.value)}>
-                        <option value={court}>Choose court</option>
-                </select><br/> */}
                 <br/>
                 <br/>
                 <button type="submit">Save edited game</button>
