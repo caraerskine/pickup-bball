@@ -15,11 +15,14 @@ const arr = [{
 function Games() {
   const { user } = useContext(UserContext);
 
-  console.log(user, "from Games")
-
+//this logical statement is not showing up and I am not sure why, used to be {!user.games && user}, I took out the bang
+//operator and then the statement showed up but then the person's games disappeared.
   if (!user.games && user){
-    return <h2>Let's play! Click "All Courts" to add some games, {user.username}!</h2>
-  }
+    return (
+    <h3>It looks like you don't have any games yet.<br></br>
+       Click "All Courts" to add some games, {user.username}!</h3>
+  );  
+}
 
   if (user.games && user) {
   const displayGames = user.games.map((g) => {
@@ -28,8 +31,8 @@ function Games() {
         <div key={g.id}> 
             <ol>
                 <b>Court:</b> {g.court_name} <br />
-                <b>Time:</b>{g.time} <br />
-                <b>Bring a Basketball?:</b> {g.bring_ball ? "yes 🏀" : "no"}
+                <b>Time:</b> {g.time} <br />
+                <b>Bring a Basketball?:</b> {g.bring_ball ? "yes 🏀" : "no ❌"}
                 <br />
                 <b>Skill Level:</b> {g.skill_level} <br />
                 <b>Contact info:</b> {g.contact_info} <br />

@@ -8,8 +8,6 @@ function Home() {
         return(
             <div>
                 <h3>{user.username}'s Home Page</h3>
-                {/* <h4>Click "Games" to see all your Games</h4>
-                <h4>Click "All Courts" to see all the Courts and to Add a Game</h4> */}
             </div>
         )
     } 

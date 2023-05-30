@@ -46,6 +46,7 @@ function GameForm(){
   return (
     //print errors
     <form onSubmit={handleSubmit}>
+        <br/>
         <label>Time: </label>
         <input 
             type="text"
@@ -55,7 +56,7 @@ function GameForm(){
             placeholder="i.e., 2:00 pm"  
         /> <br/>
         <br/>
-        <label>Bring a basketball?</label>
+        <label>Bring a basketball? </label>
         <select
             id="bring_ball"
             value={ball}
@@ -70,7 +71,7 @@ function GameForm(){
             id="skill_level"
             value={skill}
             onChange={(e) => setSkill(e.target.value)}
-            placeholder="1-10 skill level"
+            placeholder="1-10, 10 being best"
         /> <br/>
         <br/>
         <label>Contact Info: </label>

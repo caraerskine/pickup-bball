@@ -20,13 +20,15 @@ function NavBar() {
     //takes user out of session hash
     //navigate to the home
 
+    //should i say, if user && !games then show the "Home" page?
+
     if (user) {
         return (
             <div>
                 <h2>Hello {user.username} </h2>
                 <h4>Click "Logout" to logout</h4>
                 <h4>Click "Games" to see all your basketball games</h4>
-                <h4>Click "All Courts" to see all the basketball courts</h4>
+                <h4>Click "All Courts" to see all the basketball courts and add a new court or a game</h4>
                 <p>🗽🍎🏀</p>
                 <br/>
                 <button onClick={logoutUser}>Logout</button>
@@ -59,9 +61,6 @@ export default NavBar
 //.then arrow function is empty becasue it is not sending anything back
 
 //games button takes you to games which loads the game form
-//but I am unsure about what happens after you click save game on GameForm
 //allcourts does take you to courts
 
 //Games component is also rendering on this page below the NavBar
-
-//🐀
