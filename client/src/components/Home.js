@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserContext } from './context/user'
+import { UserContext } from '../context/user'
 
 function Home() {
     const { user, autoLoginError } = useContext(UserContext)

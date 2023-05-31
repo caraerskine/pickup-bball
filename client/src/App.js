@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'
-import Navigation from './Navigation'
-import Home from './Home'
-import NavBar from './NavBar'
-import SignUp from './SignUp'
-import Login from './Login'
-import Games from './Games'
-import GameForm from './GameForm'
-import AllCourts from './AllCourts'
-import EditGame from './EditGame'
-import NewCourt from './NewCourt'
+import Navigation from './components/Navigation'
+import Home from './components/Home'
+import NavBar from './components/NavBar'
+import SignUp from './components/SignUp'
+import Login from './components/Login'
+import Games from './components/Games'
+import GameForm from './components/GameForm'
+import AllCourts from './components/AllCourts'
+import EditGame from './components/EditGame'
+import NewCourt from './components/NewCourt'
 import './App.css';
 
 

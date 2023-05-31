@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext, useState, useEffect } from 'react'
-import { UserContext } from './context/user'
+import { UserContext } from '../context/user'
 import { useNavigate, useParams } from 'react-router-dom'
 
 //changed to false from ""
