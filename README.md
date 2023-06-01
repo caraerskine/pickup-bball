@@ -39,6 +39,19 @@ pickup-bball
 Run npm install and npm run server
 Open a second terminal window and run npm start
    
+STRETCH GOALS:
+-Add photo of park/court
+-Have a user profile with a photo
+
+-Request to join a game
+    Say there are 9 people signed up, and you need a 10th for 5 on 5, you could be the 10th person and complete the game. I'm thinking you could send a request to the person who created the game, and then they can decide to add you or not, based on skill level, etc. A little like "choosing teams". 
+
+-Have your skill level on you profile public, and others at the skill level can invite you to join a game 
+and you can invite others as well. 
+
+-Show how many people have joined a game
+
+
 Let's hoop! 🏀
 
 
