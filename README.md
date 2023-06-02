@@ -10,6 +10,7 @@ All users can see all the basketball courts.
 You can add a game to a court, delete a game, and edit your game. 
 You can also add a court to the list of courts.
 
+
 Goals achieved:
 
 For example:
@@ -36,6 +37,11 @@ UPDATE
 DELETE
 -Allow users to delete a game
 
+-DEPLOYED
+This app is deployed on Render as a publicly available app:
+https://bball-courts.onrender.com/
+
+-MY GIT
 URL of repo
 https://github.com/caraerskine/pickup-bball.git
 
@@ -68,6 +74,10 @@ and you can invite others as well.
 
 
 Let's hoop! 🏀
+
+
+
+
 
 
 
