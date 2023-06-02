@@ -21,7 +21,7 @@ For example:
     * Create a new court 
     * Modify or delete a game
     * Create a new game
-    
+
 CREATE
 -Allow users to add a new court
 -Allow users to add a new game
@@ -53,7 +53,7 @@ Open a second terminal window and run npm start
 STRETCH GOALS:
 -Add photo of park/court
 
--5 on 5 games can be made
+-A user can make a 5 on 5 game and a user of the same skill level can join the game
 
 -Have a user profile with a photo
 
