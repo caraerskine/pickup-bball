@@ -10,15 +10,13 @@ All users can see all the basketball courts.
 You can add a game to a court, delete a game, and edit your game. 
 You can also add a court to the list of courts.
 
+GOALS ACHIEVED
 
-Goals achieved:
-
-For example:
 * MVP: As a user, I can:
-    * Sign up for an account,
-    * Log in to the site & remain logged in,
-    * Log out,
-    * View a list of all available games in my area and their respective courts,
+    * Sign up for an account
+    * Log in to the site & remain logged in
+    * Log out
+    * View a list of all available games in my area and their respective courts
     * Create a new court 
     * Modify or delete a game
     * Create a new game
