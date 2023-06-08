@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/user'
 
-
-
 function Login(){
   const [form, setForm] = useState({
     username: "",

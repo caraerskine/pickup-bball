@@ -2,27 +2,50 @@
 import React, { useState, useEffect, useParams } from "react";
 import { useNavigate } from "react-router-dom";
 
+//this component handles User Authentication
+//signing up and logging in, and retrieving user info
+
 //create context
 const UserContext = React.createContext();
 
 //create a provider component
+//it manages the state below, state related to the user, likes user data, errors and other related data.
+//The UserProvider component serves as a central place to manage user-related state and actions, 
+//allowing other components to access and modify the user data and handle authentication-related errors. 
+//It encapsulates the logic for fetching user data and handles different scenarios based on the response 
+//received from the server.
 function UserProvider({ children }) {
   const [user, setUser] = useState(false);
   //set useState to an empty object u r going to 'get'
   //user IS an object
-  // const {id} = useParams()
-  // const params = useParams()
+  //user init as false, no user is present to start. once the user is authenticated the user data gets updated, setUser(data)
   const [errors, setErrors] = useState([]);
+  //state for an array of errors related to user actions
   const [courts, setCourts] = useState([]);
   const [signUpError, setSignUpError] = useState([]);
   const [loginError, setLoginError] = useState([]);
   const [autoLoginError, setAutoLoginError] = useState([]);
+  //each hold error messages that connect to sign-up, login, and autologin 
   const navigate = useNavigate()
+  //react router library allow nav between pages
 
 
   useEffect(() => {
     fetchUser('/me', 'GET')
   }, []);
+  //triggers fetchUser function when the component is first rendered
+
+  //fn below 
+  //responsible for making HTTP reqs to the server to fetch user data or do sign-up or login
+  //it takes 3 parameters, url, method and body
+  //an object 'options' contains the HTTP method and headers
+  // if body is provided it is stringified and added to the options object as the request body (GET has no body)
+ //fetch fn sends the request to the specified URL with constructed options
+ //it awaits the response and parses it as JSON (line 55)
+ //if the response contains errors, (line 58) then the errors are put in the respective state (signupEror, loginerror, autologinerror)
+ //if there are no errors (69) the user data is stored in the user state variable and the navigate fn
+ //is used to redirect the user to the /games route.
+ //If an error occurs during the req/resp an error message is stored in the error state varaibles 
 
   const fetchUser = async (url, method, body = false) => {
     try {
@@ -71,6 +94,34 @@ function UserProvider({ children }) {
   //get must be false for a get
   //if body true then set it
   //set another conditional in 44
+
+//by declaring a fn as async, you don't need to explcitily create and return
+//a promise object. the async keyword automatically wraps the function's
+//return value in a resolved promise. if the function returns a value,
+//the promise will be resolved with that value. if the fn throws an
+//error the promise will be rejected with the thrown error.
+
+//async promises are implicit
+//when an async function completes its execution it will resolve
+//the promise. the resolved value of the promise will depend
+//on the value returned by the async fn. if the fn returns a 
+//value, the promise will be resolved with that value. 
+
+//await keyword pauses the execution of the fn until a promise is resolved.
+//this allows you to write code that appears to be synchronous but
+//still handles async operations. await goes w async.
+
+//async fns simplify the syntax and eliminates the need for manunal promise creation and chaining.
+
+  //async returns a promise (line 50)
+//asyc allows u to use await inside the function to wait for the asynchronous operation to complete
+//await keyword is used to pause the execution of the function until the awauted
+//async operation is resolved or rejected. 
+//in this case, 'await' is used before the fetch and response.json operations 
+//and waits for the response to be received and parsed as JSON
+
+
+
 
   //original one before you tried to write async await at the bottom here
   // useEffect(() => {

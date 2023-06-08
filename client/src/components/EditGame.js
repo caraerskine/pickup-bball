@@ -3,7 +3,6 @@ import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/user'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//changed to false from ""
 
 function EditGame() {
     const { id } = useParams()   

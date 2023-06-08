@@ -8,9 +8,15 @@ Rails.application.routes.draw do
  post "/signup", to: "users#create" 
  get "/me", to: "users#show"
 
+#challenge 
+get "/test" , to: "courts#number"
+
+
 resources :users
 resources :courts
 resources :games 
+
+
 
 # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

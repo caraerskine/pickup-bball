@@ -25,7 +25,6 @@ end
 
 #allows us to show that a user is logged in
 #IMPORTANT
-#make strong params later w private?? idk
 #brcrypt and AR gives us .authenticate
 
 #same as if saying user && user.authenticate
