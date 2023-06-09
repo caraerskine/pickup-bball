@@ -11,6 +11,19 @@ Rails.application.routes.draw do
 #challenge 
 get "/test" , to: "courts#number"
 
+#For example, if you had an application of a book app where you could review books. The challenge could be something like:
+
+#Make a GET route for '/book_reviews/:n' to the books controller book_reviews action.
+
+#In the book_review_action, return all the books that has n or more reviews as json.
+
+#make my challenge for n or more games
+#look at notes from J
+
+#You could use activerecord for this or ruby for this.
+
+#put other custom challenges here
+
 
 resources :users
 resources :courts
