@@ -10,6 +10,3 @@ class User < ApplicationRecord
 
 end
 
-#keep the uniq ??
-
-#uniqueness: true

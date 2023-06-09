@@ -15,8 +15,6 @@ const arr = [{
 function Games() {
   const { user } = useContext(UserContext);
 
-//this logical statement is not showing up and I am not sure why, used to be {!user.games && user}, I took out the bang
-//operator and then the statement showed up but then the person's games disappeared.
   if (user.games && user.games.length === 0){
     return (
     <h3>It looks like you don't have any games yet.<br></br>

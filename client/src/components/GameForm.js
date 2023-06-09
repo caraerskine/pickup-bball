@@ -28,23 +28,7 @@ function GameForm(){
         console.log(addGame, "addGame is happening")
     }
 
-//drop down for court 
-//map over courts like we did in game 
-//option tags for all 7 courts
-//this shit is insane
-
-
-//addGame tells global state there is a new command in the back end and put it in global state
-//addGame is a function in user.js where the POST is 
-//I see it in my Network tab when I look at where it is 
-//so I think it is working
-//but somehow is it like I am not showing it after it actually works 
-//is that the problem
-
-//this form IS rendering but when I click save game i get an "unprocessable entity error" 422
-
   return (
-    //print errors
     <form onSubmit={handleSubmit}>
         <br/>
         <label>Time: </label>
@@ -97,18 +81,3 @@ function GameForm(){
 
 export default GameForm
 
-//delete game on game form 
-//drop down for Court in the game form to show all the available courts
-
-//COURTS
-//Read all courts (see them) xx
-//Create a court xx
-//stretch goals --
-//edit a court
-//delete a court
-
-//GAMES
-//read all games xx
-//create a game xx
-//delete a game xx
-//edit a game xx

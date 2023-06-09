@@ -1,17 +1,10 @@
-//src/context/user.js
 import React, { useState, useEffect, useParams } from "react";
 import { useNavigate } from "react-router-dom";
 
-//create context
 const UserContext = React.createContext();
 
-//create a provider component
 function UserProvider({ children }) {
   const [user, setUser] = useState(false);
-  //set useState to an empty object u r going to 'get'
-  //user IS an object
-  // const {id} = useParams()
-  // const params = useParams()
   const [errors, setErrors] = useState([]);
   const [courts, setCourts] = useState([]);
   const [signUpError, setSignUpError] = useState([]);
@@ -66,28 +59,6 @@ function UserProvider({ children }) {
       console.log("error", error)
     }
   };
-  //async await fetch that hits signup, login, auto login
-  //send a url, method and a body
-  //get must be false for a get
-  //if body true then set it
-  //set another conditional in 44
-
-  //original one before you tried to write async await at the bottom here
-  // useEffect(() => {
-  //   fetch("/me")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data, "in the fetch of '/me'");
-  //       if (data.errors) {
-  //         setLoggedIn(false);
-  //       } else {
-  //         setUser(data);
-  //         setLoggedIn(true);
-  //         setGames(data.games);
-  //       }
-  //     });
-  // }, []);
-
 
     useEffect(() => {
         console.log("useEffect for initial fetch for '/courts'")
@@ -110,43 +81,7 @@ function UserProvider({ children }) {
         setCourts([...courts, addedCourt])
     }
 
-  //make one for login and signup too
-  //then i can combo it all in one 
-  //helper function
-  
-//   const fetchUserGames = async () => {
-//     try {
-//       const response = await fetch(`/me`);
-//       const gamesData = await response.json();
-//       setGames(gamesData);
-//     } catch (error) {
-//       console.error('Error fetching user games:', error);
-//     }
-//   };
-  
-
-  //^ write async function here
-
-  //useEffect
-  //empty dependency array to get user on mount and establish who user is
-  //run this set the user in here
-  //fetch the games for that user too (later on)
-  //hit /me get the user
-  //in the value return the user
-  //the user is held in state, if the user changes we know about it
-
-  //useEffect - when i refresh the page
-  //hit the me route, checks user show to see if there is a user n the session hash
-  //returns a user or an error
-  //set the user in state
-  //setLogged in becomes true or false depending on the obejct you get back
-
-  //send nested json, get the user and their games instead
-  //then you'd delete the fetchGames from Login and Signup
-
-  //I call addGame in the GameForm component to trigger this POST when I want the user to post
   const addGame = (game) => {
-    // debugger
     fetch("/games", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -166,13 +101,7 @@ function UserProvider({ children }) {
         }
       });
   };
-  //clear the errors once it is successful
-  //all games and the new one aka data w/spread operator
-  //post it after I stringify it and then add it to the existing games
-  //coming from GameForm
-
-  //Cara's new patchGame that looks like addGame, trying to call this in EditGame component
-  //so the game can be edited and it can be saved to the db
+  
   const patchGame = (editGame) => {
     fetch(`/games/${editGame.id}`, {
       method: "PATCH",
@@ -206,8 +135,6 @@ function UserProvider({ children }) {
 
 
   return (
-    //loggedIn is now part of global state
-    //component just needs to check logged in, t or f
     <UserContext.Provider
       value={{
         user,
@@ -232,14 +159,3 @@ function UserProvider({ children }) {
 
 export { UserContext, UserProvider };
 
-//any child that needs access to global state i can pass here
-//nancy video auth in rails if u need
-//parents and children
-//global state
-//wrap any component that needs acces to global state we wrap in consumer
-
-//good to put useContext in global state
-//refresh the page the context gets refreshed
-//fetch to /me we come to user.js
-
-//global state can be handled internally in react w useContext

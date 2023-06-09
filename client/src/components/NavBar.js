@@ -17,10 +17,6 @@ function NavBar() {
             navigate('/')
         })
     }
-    //takes user out of session hash
-    //navigate to the home
-
-    //should i say, if user && !games then show the "Home" page?
 
     if (user) {
         return (
@@ -57,10 +53,3 @@ function NavBar() {
 
 export default NavBar
 
-//user and logout are in UserContext and that is where they come from
-//.then arrow function is empty becasue it is not sending anything back
-
-//games button takes you to games which loads the game form
-//allcourts does take you to courts
-
-//Games component is also rendering on this page below the NavBar

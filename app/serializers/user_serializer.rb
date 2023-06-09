@@ -4,7 +4,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :courts, through: :games 
 
   def courts_uniq
-    # byebug
     object.courts.uniq
   end
 
