@@ -6,6 +6,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 function EditGame() {
     const { id } = useParams()   
+    //allows me to access the paramters from the current route /:id
+    //the obj of id is destructured and it extracts the id paramters from the parametes obj returned by the useParams hook. 
+    //if the current route has an 'id' parameter it will be assgined to the id variable.
+    //the dynamic route of :id accesses the value of 'id' from the URL and will use it to fetch specific data
     const params = useParams()
     const {patchGame, user, setUser, errors} = useContext(UserContext)
     const navigate = useNavigate()

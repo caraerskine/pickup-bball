@@ -4,6 +4,9 @@ import { useContext } from 'react'
 import { UserContext } from '../context/user'
 import MyCourt from './MyCourt'
 
+//courts state from user.js could live in here instead
+//MyCourt is a child of this and needs state
+//?
 
 function Courts() {
 

@@ -18,6 +18,10 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(false);
   //set useState to an empty object u r going to 'get'
   //user IS an object
+  //init value of user is set to false
+  //setUser is the setter fn for updating the user state. when called w a new value it will trigger a
+  //re-render of the component and update the 'user' state to the new value.
+  //initializing the user state to false and providing the ability to update it later using the setUser function.
   //user init as false, no user is present to start. once the user is authenticated the user data gets updated, setUser(data)
   const [errors, setErrors] = useState([]);
   //state for an array of errors related to user actions
@@ -34,6 +38,7 @@ function UserProvider({ children }) {
     fetchUser('/me', 'GET')
   }, []);
   //triggers fetchUser function when the component is first rendered
+  //retreiving the user info
 
   //fn below 
   //responsible for making HTTP reqs to the server to fetch user data or do sign-up or login
@@ -120,6 +125,54 @@ function UserProvider({ children }) {
 //in this case, 'await' is used before the fetch and response.json operations 
 //and waits for the response to be received and parsed as JSON
 
+//this is without async await 
+//fetchUser returns a promise chain but instead of using await to handle async operations, it uses the
+//traditional '.then()' and '.catch()' methods to handle the Promises returned by 'fetch'
+// const fetchUser = (url, method, body = false) => {
+//   const options = {
+//     method: method,
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   };
+//   if (body) {
+//     options.body = JSON.stringify(body);
+//   }
+
+//   return fetch(url, options)
+//     .then(response => {
+//       console.log("Response Not Ok");
+//       return response.json();
+//     })
+//     .then(data => {
+//       if (data.errors) {
+//         let err = data.errors.map(e => <li>{e}</li>);
+
+//         if (url === "/signup") {
+//           setSignUpError(err);
+//         } else if (url === "/login") {
+//           setLoginError(err);
+//         } else {
+//           setAutoLoginError(err);
+//         }
+//       } else {
+//         setUser(data);
+//         navigate('/games');
+//       }
+//     })
+//     .catch(error => {
+//       let message = [<li>Server Unresponsive</li>];
+
+//       if (url === "/signup") {
+//         setSignUpError(message);
+//       } else if (url === "/login") {
+//         setLoginError(message);
+//       } else {
+//         setAutoLoginError(message);
+//       }
+//       console.log("error", error);
+//     });
+// };
 
 
 

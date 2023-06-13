@@ -1,6 +1,10 @@
 class GamesController < ApplicationController
     before_action :authorize
     # before_action :authorize_user, except: [:index, :create]
+
+    #only for test challenge
+    skip_before_action :authorize, only: [:cheese]
+            
    
     #old style
     def create
@@ -53,6 +57,30 @@ class GamesController < ApplicationController
     #     game = Game.find(params[:id])
     #     render json: game
     # end
+
+     #return the game where the skill level is greater than 9 and the 
+     # is greater than 3 pm
+        def cheese
+            games = Game.where("skill_level :: integer > ?", 9)
+            filtered_games = games.select { |game| game.time.to_i > 3 }
+              # Perform desired operations on each game
+              # Example: game.title = game.title.capitalize
+            render json: filtered_games
+        end
+          
+
+        #how to filter out the games in those courst and return that array of courts
+        #and how do you get that court and find only one court that matches ro
+        #how do you filter out the games with a skill_level greater than 5
+
+        #eplained above -- 'Court.where("skill_level > ?", 5) gets all the courts
+        #with a skill level greater than 5. 
+        #Then the 'map' method is used to iterate over each court and retrive the games
+        #with a skill level greater than 5 using 'court.games.where("skill_level > ?", 5)
+        #result is an array of hashes and each has contains the court object and the 
+        #corresponding filtered games. Finally, the 'filtered_courts' array is rendered
+        #as JSON in the resposne. 
+
   
 
     def update

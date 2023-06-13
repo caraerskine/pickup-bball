@@ -11,6 +11,29 @@ Rails.application.routes.draw do
 #challenge 
 get "/test" , to: "courts#number"
 
+#challenge2
+get "courts/search/:term", to: "courts#search"
+
+#challenge3
+get "/court/top", to: "courts#top"
+
+#challenge4
+get "/top/:n", to: "courts#top"
+
+#challenge5
+get '/court/find', to: 'courts#find'
+
+#challenge5
+get '/court/cupcake', to: 'courts#cupcake'
+
+#challeng6
+get '/game/cheese', to: 'games#cheese'
+
+
+#challeng6
+get '/court/cheese', to: 'courts#cheese'
+
+
 #For example, if you had an application of a book app where you could review books. The challenge could be something like:
 
 #Make a GET route for '/book_reviews/:n' to the books controller book_reviews action.
