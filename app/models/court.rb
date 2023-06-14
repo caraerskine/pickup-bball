@@ -5,4 +5,3 @@ class Court < ApplicationRecord
     validates :park, presence: true
 end
 
-#added , dependent: :destroy on line 2 the other day - not sure
