@@ -13,7 +13,6 @@ import NewCourt from './components/NewCourt'
 import './App.css';
 
 
-
 function App() {
 
   return (
@@ -46,19 +45,3 @@ function App() {
 
 export default App;
 
-//react router dom gives you these routes
-//this is what an SPA does
-
-//path or exact path???
-
-//global state to store user
-//wrap app in provdier
-//line 18 is local host 4000 render element home
-
-//look at ph4 project and figure out missing routes
-
-//commented out Games and therefore GameForm
-//see if App works now with Games_b and NewGame idfk
-
-//or you can comment out Games_b and NewGame
-//and keep Games and GameForm

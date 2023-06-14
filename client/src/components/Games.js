@@ -1,16 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import { Link } from "react-router-dom";
 
-
-const arr = [{
-    time: "", 
-    bring_ball: "", 
-    skill_level: "", 
-    contact_info: "",
-    id: 0, 
-    username: ""
-}]
 
 function Games() {
   const { user } = useContext(UserContext);
