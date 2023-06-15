@@ -81,6 +81,10 @@ class GamesController < ApplicationController
         #corresponding filtered games. Finally, the 'filtered_courts' array is rendered
         #as JSON in the resposne. 
 
+        
+
+
+
   
 
     def update

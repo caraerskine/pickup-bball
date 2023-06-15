@@ -9,13 +9,14 @@ Rails.application.routes.draw do
  get "/me", to: "users#show"
 
 #challenge 
-get "/test" , to: "courts#number"
+get "/court/test" , to: "courts#number"
 
 #challenge2
-get "courts/search/:term", to: "courts#search"
+get "court/search/:term", to: "courts#search"
+#court/search/rucker
 
 #challenge3
-get "/court/top", to: "courts#top"
+get "/court/topper", to: "courts#topper"
 
 #challenge4
 get "/top/:n", to: "courts#top"
@@ -24,14 +25,21 @@ get "/top/:n", to: "courts#top"
 get '/court/find', to: 'courts#find'
 
 #challenge5
-get '/court/cupcake', to: 'courts#cupcake'
+get '/court/street', to: 'courts#street'
+
+#challenge5
+get '/court/streeter', to: 'courts#streeter'
 
 #challeng6
 get '/game/cheese', to: 'games#cheese'
 
+get 'court/court_with_most_games', to: 'courts#court_with_most_games'
 
 #challeng6
 get '/court/cheese', to: 'courts#cheese'
+
+#skills
+get '/court/skills', to: 'courts#skills'
 
 
 #For example, if you had an application of a book app where you could review books. The challenge could be something like:

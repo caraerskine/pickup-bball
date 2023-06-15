@@ -1,6 +1,6 @@
 class CourtsController < ApplicationController        
     before_action :authorize
-    skip_before_action :authorize, only: [:index, :number, :search, :top, :find, :cupcake, :cheese]
+    skip_before_action :authorize, only: [:index, :number, :search, :top, :find, :street, :cheese, :court_with_most_games, :streeter, :skills, :topper]
             
         def index
             render json: Court.all
@@ -30,13 +30,25 @@ class CourtsController < ApplicationController
         #mapping over the array of courts, each court is an object
         #array how many elemets in the array
 
-        # def top
-        #     court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
-        #     render json: court
-        # end
+        #retreives court w most games
+        def topper
+            court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
+            render json: court
+        end
+
+        def topper
+            court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
+            render json: court
+        end
 
         # courts = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(n)
 
+
+        def court_with_most_games
+            court_games_counts = Court.joins(:games).group('courts.id').count
+            court_id_with_most_games = court_games_counts.max_by { |_, count| count }&.first
+            Court.find_by(id: court_id_with_most_games)
+        end
           
         def top
             n = params[:n].to_i
@@ -47,16 +59,27 @@ class CourtsController < ApplicationController
         #so if :n is 2 it will render all the games on the courts with 2 games or more
         #likewise if it is 4 it will render all the games on the courts with 4 or more games
           
+        def top
+            n = params[:n].to_i
+            courts = Court.joins(:games).group(:id).having('COUNT(games.id) >= ?', n) 
+            render json: courts
+        end
 
         #if you have a court and you know its street
         #find the court that includes that street
         #Remember it is street not name
         #Find the street with the characters "oy"
-        def cupcake
+        def street
             street = params[:street]
             court = Court.find_by("street LIKE ?", "%oy%")
             render json: court
         end
+
+        # def streeter
+        #     street = params[:street]
+        #     court = Court.find_by("street LIKE ?", "%Ho%")
+        #     render json: court
+        # end
 
 
         #if you have a court and you know its park
@@ -73,14 +96,28 @@ class CourtsController < ApplicationController
         #courts where it the street 
         #games where the skill level is greater than 5
         def cheese
-            courts = Court.where("street LIKE ?", "%oh%")
+            courts = Court.where("street LIKE ?", "%tla%")
             filtered_courts = courts.map do |court|
-              games = court.games.where("skill_level :: integer > ?", 1)
+              games = court.games.where("skill_level :: integer > ?", 6)
               { court: court, games: games }
             end
             render json: filtered_courts
         end
           
+        #street has letters 'tla'
+        #assoc games on those courts where the skills level is greater than 5
+
+        def skills
+            courts = Court.where("street LIKE ?", "%tla%")
+            filtered_courts = courts.map do |court|
+                court.games.where("skill_level :: integer > ?", 5)
+            end
+            render json: filtered_courts
+        end
+
+
+
+
 
         #how to filter out the games in those courst and return that array of courts
         #and how do you get that court and find only one court that matches ro
@@ -104,21 +141,30 @@ class CourtsController < ApplicationController
         #find courts where teh court incldues the "ro" string
         #then use the where method on the courts' games
         def number
-            court = Court.where("park Like ? ", "%ro%")
+            # court = Court.where("park Like ? ", "%ro%")
             # games = 
             # court = Court.includes(:games).where(["park LIKE ? and games.skill_level > ?" , "%ro%", ]).references(:games)
             # court = Court.includes(:games).where("games.skill_level > '7'").references(:games)
             #use above code, how would you now filter for parks that include ro?
             # court = Court.includes(:games).where(games: { skill_level: '10'})
-            # court = Court.where("skill_level > '5'")            
+            court = Court.includes(:games).where("games.skill_level :: integer > ?", 5).references(:games)
+           
             render json: court      
         end
+
+    #This code allows you to search for courts based on their park name using a 
+    #case-insensitive search. The response will contain a JSON array of courts 
+    #that match the search term.
 
         def search
             courts = Court.where("lower(park) LIKE ?", "%" + params[:term].downcase + "%")
             render json: courts
         end
         
+        # def search
+        #     courts = Court.where("lower(park) LIKE ?", "%" + params[:term].downcase + "%")
+        #     render json: courts
+        # end
 
 
 
