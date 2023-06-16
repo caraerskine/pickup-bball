@@ -88,7 +88,7 @@ class GamesController < ApplicationController
   
 
     def update
-        game = Game.find(params[:id])
+        game = current_user.games.find(params[:id])
         game.update!(game_params)
         render json: game
     end
@@ -96,7 +96,7 @@ class GamesController < ApplicationController
     #always off the model here
 
     def destroy
-        game = Game.find(params[:id])
+        game = @current_user.find(params[:id])
         game.destroy
         head :no_content
     end
