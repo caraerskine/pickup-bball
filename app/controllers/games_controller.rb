@@ -16,15 +16,16 @@ class GamesController < ApplicationController
         render json: game
     end
   
-
+    #Logged in User's games which is current_user
+    
     def update
-        game = Game.find(params[:id])
+        game = @current_user.games.find(params[:id])
         game.update!(game_params)
         render json: game
     end
 
     def destroy
-        game = Game.find(params[:id])
+        game = @current_user.games.find(params[:id])
         game.destroy
         head :no_content
     end
