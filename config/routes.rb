@@ -41,6 +41,9 @@ get '/court/cheese', to: 'courts#cheese'
 #skills
 get '/court/skills', to: 'courts#skills'
 
+#group
+get '/court/group', to: 'courts#group'
+
 
 #For example, if you had an application of a book app where you could review books. The challenge could be something like:
 

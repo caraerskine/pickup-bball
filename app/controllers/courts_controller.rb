@@ -29,6 +29,16 @@ class CourtsController < ApplicationController
         #Court.all is an array
         #mapping over the array of courts, each court is an object
         #array how many elemets in the array
+        
+
+        def group	
+            filtered_courts = Court.select { |court| court.games.count >= 2 }	
+            return filtered_courts
+        end
+        #selects each court that has 2 or more games
+        #ruby iterator select
+        #see group path in routes.rb
+
 
         #retreives court w most games
         def topper
@@ -36,10 +46,6 @@ class CourtsController < ApplicationController
             render json: court
         end
 
-        def topper
-            court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
-            render json: court
-        end
 
         # courts = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(n)
 
@@ -59,11 +65,6 @@ class CourtsController < ApplicationController
         #so if :n is 2 it will render all the games on the courts with 2 games or more
         #likewise if it is 4 it will render all the games on the courts with 4 or more games
           
-        def top
-            n = params[:n].to_i
-            courts = Court.joins(:games).group(:id).having('COUNT(games.id) >= ?', n) 
-            render json: courts
-        end
 
         #if you have a court and you know its street
         #find the court that includes that street
