@@ -19,9 +19,7 @@ function EditGame() {
     const [myGame, setMyGame] = useState(obj)
 
     useEffect(() => {
-      let g = user.games.find((e) => {
-        console.log(typeof(e.id))
-        
+      let g = user.games.find((e) => {        
         return e.id == id})
 
         g ? setMyGame(g) : setMyGame(obj)
@@ -34,13 +32,13 @@ function EditGame() {
     }
 
     function updateMyGame(e){
-        console.log(e, "e")
         const { id, value } = e.target;
         setMyGame({...myGame, [id]: value})
     }
 
     function handleDelete(e){
         e.preventDefault()
+        
         fetch(`/games/${id}`, {
             method: "DELETE",
         })

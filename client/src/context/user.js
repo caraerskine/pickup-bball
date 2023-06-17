@@ -29,9 +29,7 @@ function UserProvider({ children }) {
         options.body = JSON.stringify(body);
       }
       const response = await fetch(url, options);
-       console.log("Response Not Ok")
       const data = await response.json();
-        console.log(data, "in the fetch of '/me'");
       if (data.errors) {
         let err = data.errors.map((e) => <li>{e}</li>)
         
@@ -56,22 +54,18 @@ function UserProvider({ children }) {
       } else {
         setAutoLoginError(message)
       }
-      console.log("error", error)
     }
   };
 
     useEffect(() => {
-        console.log("useEffect for initial fetch for '/courts'")
         fetch('/courts')
         .then(response => {
             if (response.ok){
                 response.json().then(data => {
-                    console.log(data, "new courts")
                     setCourts(data)
                 })
             } else {
                 response.json().then(error => {
-                    console.log(error.error, "courts load error")
                 })
             } 
         })
@@ -90,11 +84,9 @@ function UserProvider({ children }) {
       .then((response) => response.json())
       .then((data) => {
         if (data.errors) {
-          console.log(data, "gucci");
           const errorLis = data.errors.map((e) => <li>{e}</li>);
           setErrors(errorLis);
         } else {
-          console.log(data);
           setUser({...user, games: [...user.games, data]})
           alert("Game added!");
           setErrors([]);
@@ -111,7 +103,6 @@ function UserProvider({ children }) {
       .then((response) => response.json())
       .then((editGameData) => {
         if (editGameData.errors) {
-          console.log(editGameData, "new edited game today");
           const errorLis = editGameData.errors.map((error) => <li>{error}</li>);
           setErrors(errorLis);
         } else {

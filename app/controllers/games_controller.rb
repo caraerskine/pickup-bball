@@ -15,8 +15,6 @@ class GamesController < ApplicationController
         game = Game.find(params[:id])
         render json: game
     end
-  
-    #Logged in User's games which is current_user
     
     def update
         game = @current_user.games.find(params[:id])
