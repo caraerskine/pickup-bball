@@ -1,6 +1,6 @@
 class CourtsController < ApplicationController        
     before_action :authorize
-    skip_before_action :authorize, only: [:index, :number, :search, :top, :find, :street, :cheese, :court_with_most_games, :streeter, :skills, :topper]
+    skip_before_action :authorize, only: [:index, :number, :search, :top, :find, :street, :cheese, :court_with_most_games, :streeter, :skills, :topper, :group, :one]
             
         def index
             render json: Court.all
@@ -34,17 +34,32 @@ class CourtsController < ApplicationController
         def group	
             filtered_courts = Court.select { |court| court.games.count >= 2 }	
             return filtered_courts
+            result = group
+            print(result)
         end
         #selects each court that has 2 or more games
         #ruby iterator select
         #see group path in routes.rb
 
+        def bone
+            courts_with_two = Court.select { |court| court[:games]&.count.to_i >= 2}
+            puts courts_with_two
+        end
+        #retrieves court w most games
 
-        #retreives court w most games
+        def zone
+            courts_with_two = Court.each do |court|
+              if court[:games]&.count.to_i >= 2
+            end
+            puts courts_with_two
+          end
+        
         def topper
             court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
             render json: court
         end
+
+
 
 
         # courts = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(n)

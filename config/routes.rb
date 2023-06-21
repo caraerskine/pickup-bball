@@ -9,40 +9,40 @@ Rails.application.routes.draw do
  get "/me", to: "users#show"
 
 #challenge 
-get "/court/test" , to: "courts#number"
+# get "/court/test" , to: "courts#number"
 
 #challenge2
-get "court/search/:term", to: "courts#search"
+# get "court/search/:term", to: "courts#search"
 #court/search/rucker
 
 #challenge3
-get "/court/topper", to: "courts#topper"
+# get "/court/topper", to: "courts#topper"
 
 #challenge4
-get "/top/:n", to: "courts#top"
+# get "/top/:n", to: "courts#top"
 
 #challenge5
-get '/court/find', to: 'courts#find'
+# get '/court/find', to: 'courts#find'
 
 #challenge5
-get '/court/street', to: 'courts#street'
+# get '/court/street', to: 'courts#street'
 
 #challenge5
-get '/court/streeter', to: 'courts#streeter'
+# get '/court/streeter', to: 'courts#streeter'
 
 #challeng6
-get '/game/cheese', to: 'games#cheese'
+# get '/game/cheese', to: 'games#cheese'
 
-get 'court/court_with_most_games', to: 'courts#court_with_most_games'
+# get 'court/court_with_most_games', to: 'courts#court_with_most_games'
 
 #challeng6
-get '/court/cheese', to: 'courts#cheese'
+# get '/court/cheese', to: 'courts#cheese'
 
 #skills
-get '/court/skills', to: 'courts#skills'
+# get '/court/skills', to: 'courts#skills'
 
 #group
-get '/court/group', to: 'courts#group'
+# get '/courts/bone', to: 'courts#bone'
 
 
 #For example, if you had an application of a book app where you could review books. The challenge could be something like:
