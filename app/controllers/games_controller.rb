@@ -1,18 +1,16 @@
 class GamesController < ApplicationController
-    before_action :authorize
    
     def create
-        game = Game.create!(game_params)
+        game = @current_user.games.create!(game_params)
         render json: game, status: :created
     end
 
     def index
-        render json: Game.all
+        render json: @current_user.games
     end
   
-
     def show
-        game = Game.find(params[:id])
+        game = @current_user.games.find(params[:id])
         render json: game
     end
     
@@ -32,7 +30,7 @@ class GamesController < ApplicationController
     private
 
     def game_params
-        params.permit(:time, :bring_ball, :id, :skill_level, :contact_info, :user_id, :court_id)
+        params.permit(:time, :bring_ball, :skill_level, :contact_info, :court_id)
     end
   
 end

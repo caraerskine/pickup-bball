@@ -9,21 +9,17 @@ function GameForm(){
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
     const { id } = useParams()
-    console.log(id)
     const { user, addGame, errors } = useContext(UserContext)
 
-    console.log(user.courts_uniq, "what is user")
 
     const handleSubmit = (e) => {
-        console.log(id, "court id")
         e.preventDefault();
         addGame({
             time: time,
             bring_ball: false,
             skill_level: skill,
             contact_info: contact,
-            court_id: id,
-            user_id: user.id
+            court_id: id
         })
     }
 
