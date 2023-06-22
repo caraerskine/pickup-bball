@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 # get '/court/skills', to: 'courts#skills'
 
 #group
-# get '/courts/bone', to: 'courts#bone'
+get '/court/zone', to: 'courts#zone'
 
 
 #For example, if you had an application of a book app where you could review books. The challenge could be something like:

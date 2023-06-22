@@ -47,11 +47,11 @@ class CourtsController < ApplicationController
         #retrieves court w most games
 
         def zone
-            courts_with_two = Court.each do |court|
-              if court[:games]&.count.to_i >= 2
+            courts_with_two = Court.all.filter do |court|
+                Court.first.games.length > 11
             end
-            puts courts_with_two
-          end
+            render json: courts_with_two
+        end
         
         def topper
             court = Court.left_joins(:games).group('courts.id').order('COUNT(games.id) DESC').limit(1).first
