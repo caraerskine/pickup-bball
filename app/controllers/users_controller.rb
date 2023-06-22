@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorize, only: [:create, :index] 
+    skip_before_action :authorize, only: [:create] 
 
     def create
         user = User.create(user_params)
@@ -7,14 +7,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: {errors: user.errors.full_messages}
-        end
-    end
-
-    def index
-        user = User.create(user_params)
-        if user.valid?
-            render json: User.first
+            render json: {errors: user.errors.full_messages}, status: :unauthorized
         end
     end
 
@@ -23,7 +16,7 @@ class UsersController < ApplicationController
         if user
             render json: user, status: :ok
         else
-            render json: {errors: user.errors.full_messages}, status: :unauthorized            
+            render json: {errors: user.errors.full_messages}, status: :unauthorized     
         end    
     end
 

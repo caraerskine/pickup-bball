@@ -9,7 +9,6 @@ function UserProvider({ children }) {
   const [courts, setCourts] = useState([]);
   const [signUpError, setSignUpError] = useState([]);
   const [loginError, setLoginError] = useState([]);
-  const [autoLoginError, setAutoLoginError] = useState([]);
   const navigate = useNavigate()
 
 
@@ -18,6 +17,17 @@ function UserProvider({ children }) {
   }, []);
 
   const fetchUser = async (url, method, body = false) => {
+    setSignUpError([])
+    setLoginError([])
+
+    const messages = (url, err) => {
+      if (url === "/signup"){
+      setSignUpError(err)
+    } else if (url === "/login") {
+      setLoginError(err)
+    }
+  } 
+
     try {
       const options = {
         method: method,
@@ -25,35 +35,30 @@ function UserProvider({ children }) {
           'Content-Type': 'application/json',
         },
       };
+
       if (body) {
         options.body = JSON.stringify(body);
       }
+
       const response = await fetch(url, options);
       const data = await response.json();
-      if (data.errors) {
-        let err = data.errors.map((e) => <li>{e}</li>)
-        
-        if (url === "/signup"){
-          setSignUpError(err)
-        } else if (url === "/login") {
-          setLoginError(err)
-        } else {
-          setAutoLoginError(err)
-        }
-      } else {
+
+      if (response.ok) {
         setUser(data);
         navigate('/games');
+
+      } else if (response.status === 401) {
+      
+        let err = data.errors.map((e, i) => <li key={i}>{e}</li>)
+        
+        messages(url, err)
       }
-    } catch (error) {
+
+  } catch (error) {
+ 
       let message = [<li>Server Unresponsive</li>]
          
-      if (url === "/signup"){
-        setSignUpError(message)
-      } else if (url === "/login") {
-        setLoginError(message)
-      } else {
-        setAutoLoginError(message)
-      }
+        messages(url, message)
     }
   };
 
@@ -133,7 +138,6 @@ function UserProvider({ children }) {
         fetchUser,
         signUpError,
         loginError,
-        autoLoginError,
         logout,
         addGame,
         patchGame,
