@@ -1,5 +1,4 @@
 class GamesController < ApplicationController
-    before_action :authorize
     # before_action :authorize_user, except: [:index, :create]
 
     #only for test challenge

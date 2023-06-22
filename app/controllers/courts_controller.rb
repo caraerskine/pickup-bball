@@ -1,5 +1,4 @@
 class CourtsController < ApplicationController        
-    before_action :authorize
     skip_before_action :authorize, only: [:index, :number, :search, :top, :find, :street, :cheese, :court_with_most_games, :streeter, :skills, :topper, :group, :one]
             
         def index
