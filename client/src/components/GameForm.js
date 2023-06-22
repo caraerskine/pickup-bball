@@ -9,7 +9,7 @@ function GameForm(){
     const [skill, setSkill] = useState("")
     const [contact, setContact] = useState("")
     const { id } = useParams()
-    const { user, addGame, errors } = useContext(UserContext)
+    const { addGame, errors } = useContext(UserContext)
 
 
     const handleSubmit = (e) => {

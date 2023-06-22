@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 function EditGame() {
     const { id } = useParams()   
-    const params = useParams()
+    // const params = useParams()
     const {patchGame, user, setUser, errors} = useContext(UserContext)
     const navigate = useNavigate()
     const obj = {

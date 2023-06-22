@@ -15,7 +15,6 @@ function NewCourt() {
   const [errorsList, setErrorsList] = useState("");
 
   function handleChange(e) {
-    console.log(e, "e");
     setNewCourt((currentCourtState) => ({
       ...currentCourtState,
       [e.target.id]: e.target.value,
@@ -38,17 +37,14 @@ function NewCourt() {
       .then((response) => response.json())
       .then((court) => {
         if (court.errors) {
-          console.log(court, "new court");
           const errorLis = court.errors.map((error) => <li>{error}</li>);
           setErrorsList(errorLis);
         } else {
-          console.log(court);
           addCourt(court);
           alert("new court data created!");
           setNewCourt(initNewCourt);
         }
       });
-    console.log(formData, "formData");
   }
 
   return (
