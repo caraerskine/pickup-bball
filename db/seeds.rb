@@ -37,16 +37,3 @@ end
 puts "done seeding 🏀!"
 
 
-# User.all.each do |user| 
-#     (1..3).each do |i| 
-#         court = Court.order('RANDOM()').first
-#         user.games.create!({
-#            time: Time.at(rand * Time.now.to_i).to_s,
-#            bring_ball: (rand(1..2)).modulo(2) == 0,
-#            skill_level: rand(1..10),
-#            contact_info: Faker::PhoneNumber.cell_phone,
-#            user_id: user.id,
-#            court_id: rand(1..7)
-#         })
-#     end
-# end
