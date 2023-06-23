@@ -6,6 +6,9 @@ Rails.application.routes.draw do
  post "/signup", to: "users#create" 
  get "/me", to: "users#show"
 
+ #challenge
+ get '/courts_games/:n', to: "courts#courts_games"
+
 resources :users
 resources :courts
 resources :games 
