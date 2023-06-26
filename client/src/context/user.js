@@ -1,5 +1,5 @@
 //src/context/user.js
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //this component handles User Authentication
@@ -32,6 +32,7 @@ function UserProvider({ children }) {
   //each hold error messages that connect to sign-up, login, and autologin 
   const navigate = useNavigate()
   //react router library allow nav between pages
+  //removed autoLogin
 
 
   useEffect(() => {
@@ -81,6 +82,7 @@ function UserProvider({ children }) {
         setUser(data);
         navigate('/games');
       }
+
     } catch (error) {
       let message = [<li>Server Unresponsive</li>]
          

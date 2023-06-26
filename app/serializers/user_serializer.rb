@@ -10,7 +10,6 @@ class UserSerializer < ActiveModel::Serializer
 
 end
 
-
 #a custom method defined within a class. 
 #Line 8 calls the courts association on the object and applies the uniq method to retireve a
 #unique list of courts
